@@ -70,7 +70,7 @@ namespace Sample.Hoge //Scene名.機能名
         //メンバ変数にpublicは使わないこと
         //private は明示的に宣言する
 
-        //メンバ名はシステムハンガリアンケース
+        //メンバ名はシステムキャメルケース
         private int _moveSpeed;
 
         //定数はpublicを使ってもよい
