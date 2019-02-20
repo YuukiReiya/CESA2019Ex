@@ -11,9 +11,11 @@ namespace PrePro.Player
         [SerializeField] Sprite[] run;
 
         [SerializeField] GameObject target;
-        [SerializeField] float moveSpeed = 10;
+        [SerializeField] float moveSpeed = 100;
+        [SerializeField] float jetSpeed = 5;
+        [SerializeField] AnimationCurve curve;
+        [SerializeField] float time = 2;
         private IEnumerator routine;
-        private float jetSpeed;
 
         // Start is called before the first frame update
         void Start()
@@ -23,7 +25,10 @@ namespace PrePro.Player
         // Update is called once per frame
         void Update()
         {
-            Move();
+            if (routine == null)
+            {
+                Move();
+            }
         }
 
         private void Move()
@@ -33,34 +38,74 @@ namespace PrePro.Player
             this.transform.RotateAround(target.transform.position, axis, input * moveSpeed * Time.deltaTime);
         }
 
-        public void JetAction(GameObject toArea)
+        public void JetAction(GameObject toArea,GameObject target)
         {
+            //  早期リターン
+            if (!MyInputManager.AllController.A) { return; }
+            if(routine != null) { return; }
+
+            //  メソッド呼び出し
             routine = InterplanetaryMovement(
                 toArea,
                 () =>
             {
                 routine = null;
+                this.target = target;
             }
             );
             StartCoroutine(routine);
         }
 
+        //  惑星間移動
         private IEnumerator InterplanetaryMovement(GameObject toArea, Action action = null)
         {
-            Vector3 from = this.transform.position;
-            Vector3 to = toArea.transform.position;
+            //  移動元
+            Vector2 from = this.transform.position;
+
+            //  移動先
+            Vector2 to = toArea.transform.position;
+
+            //  回転
+            float rot = this.transform.rotation.eulerAngles.z;
+            float rot_ = rot + 180;
+
+
+            //  開始時間
+            float startTime = Time.timeSinceLevelLoad;
+
+            //  ループ
             while (from != to)
             {
-                Vector3 pos = Vector3.Lerp(from, to, jetSpeed);
-                this.transform.position = pos;
+                //  経過時間
+                float diff = Time.timeSinceLevelLoad - startTime;
+
+                //  現在の回転値(オイラー)
+                Vector3 euler = this.transform.rotation.eulerAngles;
+
+                //  移動終了 & 回転終了
+                if (diff > time)
+                {
+                    this.transform.position = to;
+                    euler.z = rot_;
+                    this.transform.rotation = Quaternion.Euler(euler);
+                    break;
+                }
+                
+                //  経過時間の割合
+                //  開始時間を0，終了時間を1に正規化したときの経過時間の割合から座標を算出
+                float rate = diff / time;
+
+                //  座標
+                transform.position = Vector2.Lerp(from, to, curve.Evaluate(rate));
+
+                //  回転
+                euler.z = Mathf.Lerp(rot, rot_, curve.Evaluate(rate));
+                transform.rotation = Quaternion.Euler(euler);
                 yield return null;
             }
 
             //  コールバックメソッド実行
-            if(action!=null)
-            {
-                action();
-            }
+            action();
         }
     }
 }

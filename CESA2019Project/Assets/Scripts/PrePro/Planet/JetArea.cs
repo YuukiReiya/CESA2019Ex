@@ -13,6 +13,12 @@ namespace PrePro.Planet
         //移動先のエリア
         public GameObject nextArea;
 
+        //移動先の惑星オブジェクト
+        public GameObject nextPlanet;
+
+        // 移動先のカメラ位置
+        public GameObject nextCameraPos;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -41,10 +47,16 @@ namespace PrePro.Planet
             {
                 //  接触したのはプレイヤーなのでGetComponentで取得
                 Player.PlayerController player = collision.GetComponent<Player.PlayerController>();
+                player.JetAction(nextArea, nextPlanet);
+
+                //  
+                if(MyInputManager.AllController.A)
+                Camera.CameraController.Instance.Move(nextCameraPos, 1);
             }
             catch
             {
-
+                //  例外処理
+                Debug.LogError("PlayerContrllerのGetComponentで例外発生");
             }
         }
     }
