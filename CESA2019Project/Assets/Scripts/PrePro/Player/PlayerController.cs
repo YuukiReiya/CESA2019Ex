@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 namespace PrePro.Player
@@ -9,7 +10,7 @@ namespace PrePro.Player
     {
         [SerializeField] Sprite[] idle;
         [SerializeField] Sprite[] run;
-
+        [SerializeField] Image guge;
         [SerializeField] GameObject target;
         [SerializeField] float moveSpeed = 100;
         [SerializeField] float jetSpeed = 5;
@@ -17,9 +18,12 @@ namespace PrePro.Player
         [SerializeField] float time = 2;
         private IEnumerator routine;
 
+        float rate;
+
         // Start is called before the first frame update
         void Start()
         {
+            rate = 1;
         }
 
         // Update is called once per frame
@@ -29,6 +33,7 @@ namespace PrePro.Player
             {
                 Move();
             }
+            guge.fillAmount = rate;
         }
 
         private void Move()
@@ -53,7 +58,9 @@ namespace PrePro.Player
                 this.target = target;
             }
             );
+            rate -= 0.15f;
             StartCoroutine(routine);
+            StartCoroutine(GageFall(time, rate));
         }
 
         //  惑星間移動
@@ -106,6 +113,33 @@ namespace PrePro.Player
 
             //  コールバックメソッド実行
             action();
+        }
+
+
+        private IEnumerator GageFall(float time,float fallValue)
+        {
+            //float tmp = guge.fillAmount;
+            //float nokori = guge.fillAmount - fallValue;
+
+            //float startTime = Time.timeSinceLevelLoad;
+
+            guge.fillAmount -= fallValue;
+            yield return null;
+            //while (guge.fillAmount != nokori)
+            //{
+            //    float diff = Time.timeSinceLevelLoad - startTime;
+
+            //    if (diff > time)
+            //    {
+            //        guge.fillAmount = nokori;
+            //        break;
+            //    }
+
+            //    float rate = diff / time;
+            //    Debug.Log("= " + rate);
+            //    guge.fillAmount = Mathf.Lerp(0, 1, rate);
+            //    yield return null;
+            //}
         }
     }
 }
