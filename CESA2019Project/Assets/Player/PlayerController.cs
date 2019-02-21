@@ -15,8 +15,8 @@ namespace Game.Pleyer
         //回転の中心をとるために使う変数
         private Vector3 _targetPos;
 
-        //ゲームパッドの入力を
-        //private MyInputManager _gamePade;
+        //
+        
 
         // Use this for initialization
         void Start()
