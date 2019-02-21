@@ -80,7 +80,7 @@ namespace Sample.Hoge //Scene名.機能名
         //enum名はパスカルケース
         private enum Youbi
         {
-            //中はすべて大文字
+            //中はすべて大文字のスネークケース
             MONDAY, TUSEDAY, WEDNESDAY   //...
         }
 
