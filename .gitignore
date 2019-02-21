@@ -9,8 +9,8 @@ CESA2019Project/Temp/UnityTempFile-a15b0de8945381f4cbc2f8dedfcec6f9
 CESA2019Project/Temp/UnityLockfile
 CESA2019Project/Temp/UnityTempFile-a0dbdf40810a7fb44ba56c51b5053958
 CESA2019Project/Temp/
-*.sln
-*.csproj
-CESA2019Project/.vs/CESA2019Project/v15/.suo
 CESA2019Project/.vs/
+*.csproj
+*.sln
+CESA2019Project/obj/Debug/build.force
 CESA2019Project/obj/
