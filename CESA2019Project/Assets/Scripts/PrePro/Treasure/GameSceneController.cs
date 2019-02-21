@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Framework;
 
 public class GameSceneController : SingletonMonoBehaviour<GameSceneController>
 {
@@ -21,12 +22,11 @@ public class GameSceneController : SingletonMonoBehaviour<GameSceneController>
     void Update()
     {
         //  クリア処理
-        if(treasureCount==clearNum)
+        if (treasureCount == clearNum)
         {
             clear.gameObject.SetActive(true);
         }
         text.text = "☆  " + treasureCount + " / " + clearNum;
-
     }
 
 

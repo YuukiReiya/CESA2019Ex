@@ -1,8 +1,12 @@
-﻿using System.Collections;
+﻿/// <summary>
+/// 番場 宥輝
+/// </summary>
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using MyInput;
 
 namespace PrePro.Player
 {
@@ -39,8 +43,7 @@ namespace PrePro.Player
         private void Move()
         {
             Vector3 axis = this.transform.TransformDirection(new Vector3(0, 0, 1));
-            float input = -MyInputManager.AllController.LStick.x;
-            this.transform.RotateAround(target.transform.position, axis, input * moveSpeed * Time.deltaTime);
+            this.transform.RotateAround(target.transform.position, axis, moveSpeed * Time.deltaTime);
         }
 
         public void JetAction(GameObject toArea,GameObject target)

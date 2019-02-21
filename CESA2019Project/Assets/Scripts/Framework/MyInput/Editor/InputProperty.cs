@@ -1,6 +1,6 @@
-﻿/******************************************************************/
-/*      制作:IT高度専門学科2年 番場 宥輝   (2018/02/26 現在)      */
-/******************************************************************/
+﻿/// <summary>
+/// 番場宥輝
+/// </summary>
 using UnityEditor;
 
 /// <summary>
@@ -40,6 +40,18 @@ namespace MyInput
         public int axis;
         public int joyNum;
 
+        /// <summary>
+        /// ゲームパッドのプロパティを作成
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="gravity"></param>
+        /// <param name="dead"></param>
+        /// <param name="sensitivity"></param>
+        /// <param name="snap"></param>
+        /// <param name="invert"></param>
+        /// <param name="axis"></param>
+        /// <param name="joyNum_"></param>
+        /// <returns></returns>
         public static InputProperty CreateGamePadProperty(string name,float gravity, float dead, float sensitivity, bool snap, bool invert, int axis, int joyNum_)
         {
             InputProperty inputProperty = new InputProperty
