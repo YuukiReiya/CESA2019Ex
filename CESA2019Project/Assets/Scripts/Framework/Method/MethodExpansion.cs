@@ -1,4 +1,7 @@
-﻿//参考：http://kan-kikuchi.hatenablog.com/entry/DelayMethod
+﻿/// <summary>
+/// 番場宥輝
+/// </summary>
+//参考：http://kan-kikuchi.hatenablog.com/entry/DelayMethod
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
