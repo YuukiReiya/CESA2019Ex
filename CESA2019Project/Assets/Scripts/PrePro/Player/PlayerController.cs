@@ -38,7 +38,7 @@ namespace PrePro.Player
         {
             rate = 1;
             _status.speed = 100;
-            _status.attack = 10;
+            _status.attack = 50;
             //_slider = GameObject.Find("Slider_O2Gage").GetComponent<Slider>();
 
         }
@@ -53,7 +53,10 @@ namespace PrePro.Player
             guge.fillAmount = rate;
 
 
-
+            if (MyInputManager.AllController.X)
+            {
+                Attack();
+            }
 
 
         }
@@ -63,6 +66,12 @@ namespace PrePro.Player
             Vector3 axis = this.transform.TransformDirection(new Vector3(0, 0, 1));
             float input = -MyInputManager.AllController.LStick.x;
             this.transform.RotateAround(target.transform.position, axis, input * _status.speed * Time.deltaTime);
+        }
+
+        private void Attack()
+        {
+            _status.speed = _status.speed + _status.attack;
+
         }
 
         public void JetAction(GameObject toArea, GameObject target)
@@ -182,5 +191,7 @@ namespace PrePro.Player
             //酸素ステータスにアイテムに効果付与
             _status.oxygen = oxygen;
         }
+
+        
     }
 }
