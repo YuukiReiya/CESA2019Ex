@@ -47,11 +47,23 @@ namespace Framework
         /// </summary>
         protected virtual void Awake()
         {
+            //  null check!
+            if (instance == null)
+            {
+                instance = this as T;
+            }
+
             //  static check!
-            if (instance != this && instance != null)
+            if (instance != this)
             {
                 Destroy(this.gameObject);
                 return;
+            }
+
+            //  Don't destroy on load 
+            if(isDefaultDontDestroy)
+            {
+                DontDestroyOnLoad(instance.gameObject);
             }
         }
     }
