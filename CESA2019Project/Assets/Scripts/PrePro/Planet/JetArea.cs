@@ -41,7 +41,7 @@ namespace PrePro.Planet
                 return;
             }
 
-
+            Debug.Log("移動可能");
             //  エラー検知
             try
             {
@@ -49,9 +49,9 @@ namespace PrePro.Planet
                 Player.PlayerController player = collision.GetComponent<Player.PlayerController>();
                 player.JetAction(nextArea, nextPlanet);
 
-                //  
-                if(MyInputManager.AllController.A)
-                Camera.CameraController.Instance.Move(nextCameraPos, 1);
+                
+                //if(MyInputManager.AllController.A)
+                //Camera.CameraController.Instance.Move(nextCameraPos, 1);
             }
             catch
             {

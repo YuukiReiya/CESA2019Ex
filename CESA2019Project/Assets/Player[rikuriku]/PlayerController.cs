@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//製作者
+//伊藤陸人
+//
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,17 +9,15 @@ namespace Game.Pleyer
 {
     public class PlayerController : MonoBehaviour
     {
+        public int Teasure { get; private set; }//探索物の保持数
+        public float Oxygen { get; private set; }//酸素
 
-
-        //変数
-        //回転角度
-        public float _angle;
-
-        //回転の中心をとるために使う変数
-        private Vector3 _targetPos;
-
-        //
         
+        //変数
+        [SerializeField] float _angle;//回転値
+        [SerializeField] float _jetSpeed;//惑星間の移動スピード
+       
+        private Vector3 _targetPos;//回転の中心をとるために使う変数
 
         // Use this for initialization
         void Start()
@@ -50,9 +51,17 @@ namespace Game.Pleyer
                 _scale.x = -1;
             }
             transform.localScale = _scale;
+
         }
 
+        public void JetTrasnsform()
+        {
+            Vector2 _fromPlanet = this.transform.position;
+            
+            Vector2 _toPlanet = transform.position;
+        }
 
+       
     }
 
 }

@@ -8,11 +8,19 @@ namespace PrePro.Player
 {
     public class PlayerController : MonoBehaviour
     {
+
+        [System.Serializable]
+        struct Status {
+            public float speed;//移動ステータス
+            public float attack;//攻撃ステータス
+            public float oxygen;//酸素ステータス
+        }
+
         [SerializeField] Sprite[] idle;
         [SerializeField] Sprite[] run;
         [SerializeField] Image guge;
         [SerializeField] GameObject target;
-        [SerializeField] float moveSpeed = 100;
+        //[SerializeField] float moveSpeed = 100;
         [SerializeField] float jetSpeed = 5;
         [SerializeField] AnimationCurve curve;
         [SerializeField] float time = 2;
@@ -20,10 +28,19 @@ namespace PrePro.Player
 
         float rate;
 
+        [SerializeField] Status _status;
+        [SerializeField] Slider _slider;
+
+
+
         // Start is called before the first frame update
         void Start()
         {
             rate = 1;
+            _status.speed = 100;
+            _status.attack = 10;
+            //_slider = GameObject.Find("Slider_O2Gage").GetComponent<Slider>();
+
         }
 
         // Update is called once per frame
@@ -34,20 +51,25 @@ namespace PrePro.Player
                 Move();
             }
             guge.fillAmount = rate;
+
+
+
+
+
         }
 
         private void Move()
         {
             Vector3 axis = this.transform.TransformDirection(new Vector3(0, 0, 1));
             float input = -MyInputManager.AllController.LStick.x;
-            this.transform.RotateAround(target.transform.position, axis, input * moveSpeed * Time.deltaTime);
+            this.transform.RotateAround(target.transform.position, axis, input * _status.speed * Time.deltaTime);
         }
 
-        public void JetAction(GameObject toArea,GameObject target)
+        public void JetAction(GameObject toArea, GameObject target)
         {
             //  早期リターン
             if (!MyInputManager.AllController.A) { return; }
-            if(routine != null) { return; }
+            if (routine != null) { return; }
 
             //  メソッド呼び出し
             routine = InterplanetaryMovement(
@@ -97,10 +119,11 @@ namespace PrePro.Player
                     this.transform.rotation = Quaternion.Euler(euler);
                     break;
                 }
-                
+
                 //  経過時間の割合
                 //  開始時間を0，終了時間を1に正規化したときの経過時間の割合から座標を算出
                 float rate = diff / time;
+
 
                 //  座標
                 transform.position = Vector2.Lerp(from, to, curve.Evaluate(rate));
@@ -116,7 +139,7 @@ namespace PrePro.Player
         }
 
 
-        private IEnumerator GageFall(float time,float fallValue)
+        private IEnumerator GageFall(float time, float fallValue)
         {
             //float tmp = guge.fillAmount;
             //float nokori = guge.fillAmount - fallValue;
@@ -140,6 +163,24 @@ namespace PrePro.Player
             //    guge.fillAmount = Mathf.Lerp(0, 1, rate);
             //    yield return null;
             //}
+        }
+
+        
+        public void SetAttack(float attack)
+        {
+            //攻撃ステータスにアイテムに効果付与
+            _status.attack = attack;
+        }
+
+        public void SetSpeed(float speed)
+        {
+            //スピードステータスにアイテムに効果付与
+            _status.speed = speed;
+        }
+        public void SetOxygen(float oxygen)
+        {
+            //酸素ステータスにアイテムに効果付与
+            _status.oxygen = oxygen;
         }
     }
 }
