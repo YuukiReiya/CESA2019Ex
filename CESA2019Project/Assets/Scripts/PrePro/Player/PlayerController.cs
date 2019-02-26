@@ -78,13 +78,33 @@ namespace PrePro.Player
         }
 
         
-        private void Attack()
+        public void Attack()
         {
-            Vector3 _axis = this.transform.TransformDirection(new Vector3(0, 0, 1));
-            //float _input = -MyInputManager.AllController.LStick.x;
-            transform.RotateAround(target.transform.position, _axis,  _status.attack * Time.deltaTime  * -1); //* _input//);
+            Vector3 _axis = this.transform.InverseTransformDirection(new Vector3(0, 0, 1));
+            float _input = -MyInputManager.AllController.LStick.x;
+            transform.RotateAround(target.transform.position, _axis, _status.attack * Time.deltaTime * _input);
 
+            //StartCoroutine("AttackMove");
         }
+
+        //private IEnumerator AttackMove()
+        //{
+        //    Vector3 _axis = this.transform.TransformDirection(new Vector3(0, 0, 1));
+        //    float _input = -MyInputManager.AllController.LStick.x;
+
+            
+        //    for (int i = 0; i >60 ; i++)
+        //    {
+        //        transform.RotateAround(target.transform.position, _axis, _status.attack * Time.deltaTime * _input);
+        //        yield return null;
+        //    }
+
+        //    for
+
+
+        //}
+
+
 
         public void JetAction(GameObject toArea, GameObject target)
         {
@@ -167,7 +187,7 @@ namespace PrePro.Player
 
             //float startTime = Time.timeSinceLevelLoad;
 
-            //_slider.value -= fallValue;
+           
 
             guge.fillAmount -= fallValue;
             yield return null;
@@ -187,7 +207,6 @@ namespace PrePro.Player
             //    yield return null;
             //}
         }
-
 
         public void AddSpeed(float _speed)
         {

@@ -5767,7 +5767,7 @@ MonoBehaviour:
   time: 1
   _status:
     speed: 100
-    attack: 2000
+    attack: 0
     oxygen: 100
   _slider: {fileID: 281541043}
   _oxygen: 50
