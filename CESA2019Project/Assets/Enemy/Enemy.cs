@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     //一秒当たりの回転角度
     public float _angle = 30f;
     int x = 1;
-  
+
     //回転の中心をとるために使う変数
     [SerializeField] private GameObject target;
 
@@ -19,12 +19,8 @@ public class Enemy : MonoBehaviour
         //自分をZ軸を中心に0～360でランダムに回転させる
         // transform.Rotate(new Vector3(0, 0, Random.Range(0, 360)), Space.World);
         this.transform.Rotate(new Vector3(0, 0, Random.Range(0, 360)), _angle);
-       
+
     }
-
-   
-
-   
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -42,15 +38,22 @@ public class Enemy : MonoBehaviour
         Debug.Log("当たってる");
 
         x = 0;
-   
+
     }
 
-        // Update is called once per frame
+    // Update is called once per frame
     void Update()
     {
-        
+
         //	Sampleを中心に自分を現在の上方向に、毎秒angle分だけ回転する。
-        Vector3 axis = transform.TransformDirection(new Vector3(0,0,1));
-        transform.RotateAround(target.transform.position, axis, _angle*x * Time.deltaTime);
+        Vector3 axis = transform.TransformDirection(new Vector3(0, 0, 1));
+        transform.RotateAround(target.transform.position, axis, _angle * x * Time.deltaTime);
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            //Space押したら敵が消える
+            Destroy(this.gameObject);
+        }
     }
+   
 }
