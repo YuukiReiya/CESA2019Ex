@@ -15,7 +15,7 @@ namespace Game.Pleyer
     {
         [SerializeField] Slider _UI;
         [SerializeField, Range(0.01f, 1)] float _interval = 0.01f;
-        uint _hp;
+        float _hp;
 
         void Reset()
         {
@@ -24,10 +24,6 @@ namespace Game.Pleyer
         // Start is called before the first frame update
         void Start()
         {
-            var s = _UI.value;
-            _hp = (uint)s;
-
-            Debug.Log(s+"/"+_hp);
         }
 
         // Update is called once per frame
