@@ -53,6 +53,7 @@ public class Enemy : MonoBehaviour
         {
             //Space押したら敵が消える
             Destroy(this.gameObject);
+            Debug.Log("死亡");
         }
     }
    
