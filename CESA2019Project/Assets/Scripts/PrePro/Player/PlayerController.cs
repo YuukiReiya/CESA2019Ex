@@ -27,20 +27,21 @@ namespace PrePro.Player
         [SerializeField] AnimationCurve curve;
         [SerializeField] float time = 2;
         private IEnumerator routine;
-
+        
         float rate;
 
         [SerializeField] Status _status;
         [SerializeField] Slider _slider;
-        public float _oxygen = 100f;
-        public float _speed = 100f;
-        
+        public float A  { get { return _status.speed; } }
+        [SerializeField] float _frame;
 
+        public bool isAttack;
 
 
         // Start is called before the first frame update
         void Start()
         {
+            isAttack = false; 
             rate = 1;
             //_oxygen = 100f;
             _status.speed = 100;
@@ -53,7 +54,6 @@ namespace PrePro.Player
         // Update is called once per frame
         void Update()
         {
-            _slider.value = _status.oxygen;
             if (routine == null)
             {
                 Move();
@@ -79,13 +79,35 @@ namespace PrePro.Player
         }
 
         
-        private void Attack()
+        public void Attack()
+        {
+            //Vector3 _axis = this.transform.InverseTransformDirection(new Vector3(0, 0, 1));
+            //float _input = -MyInputManager.AllController.LStick.x;
+            //transform.RotateAround(target.transform.position, _axis, _status.attack * Time.deltaTime * _input);
+
+            StartCoroutine("AttackMove");
+        }
+
+        private IEnumerator AttackMove()
         {
             Vector3 _axis = this.transform.TransformDirection(new Vector3(0, 0, 1));
-            //float _input = -MyInputManager.AllController.LStick.x;
-            transform.RotateAround(target.transform.position, _axis,  _status.attack * Time.deltaTime  * -1); //* _input//);
+            
+
+
+            for (int i = 0; i < _frame; i++)
+            {
+                isAttack = true;
+                Debug.Log("攻撃");
+                transform.RotateAround(target.transform.position, _axis, _status.attack * Time.deltaTime * i);
+                yield return null;
+            }
+
+            isAttack = false;
+
 
         }
+
+
 
         public void JetAction(GameObject toArea, GameObject target)
         {
@@ -168,7 +190,7 @@ namespace PrePro.Player
 
             //float startTime = Time.timeSinceLevelLoad;
 
-            //_slider.value -= fallValue;
+           
 
             guge.fillAmount -= fallValue;
             yield return null;
@@ -189,16 +211,15 @@ namespace PrePro.Player
             //}
         }
 
-
         public void AddSpeed(float _speed)
         {
             _status.speed += _speed;
         }
-        //public void SetOxygen(float _oxygen)
-        //{
-        //    _status.oxygen = _oxygen;
-        //}
-        
-        
+        public void AddOxygen(float _oxygen)
+        {
+            _status.oxygen += _oxygen;
+        }
+
+
     }
 }
