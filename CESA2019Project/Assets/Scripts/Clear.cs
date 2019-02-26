@@ -6,7 +6,7 @@ public class Clear : MonoBehaviour
 {
 
    [SerializeField] GameObject cleard;
-    [SerializeField] GameObject item;
+    [SerializeField] int _item;
     // Start is called before the first frame update
     void Start()
     {
