@@ -41,7 +41,7 @@ namespace Game.Pleyer
         /// <param name="point">回復量(0 ～ 100)</param>
         public void Heal(uint point)
         {
-            _hp += point;
+            _hp = _UI.maxValue < (_hp + point) ? _UI.maxValue : _hp + point;
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Game.Pleyer
         /// <param name="point">ダメージ量(0 ～ 100)</param>
         public void Damage(uint point)
         {
-            _hp -= point;
+            _hp = _UI.minValue > (_hp - point) ? _UI.minValue : _hp - point;
         }
 
         /// <summary>

@@ -21,5 +21,10 @@ public class s : Framework.SingletonMonoBehaviour<s>
         {
             h.Damage(10);
         }
+
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            h.Heal(10);
+        }
     }
 }
