@@ -24,6 +24,7 @@ namespace Game.Pleyer
         // Start is called before the first frame update
         void Start()
         {
+            _hp = _UI.value;
         }
 
         // Update is called once per frame
@@ -31,17 +32,7 @@ namespace Game.Pleyer
         {
             //  HPの更新(線形補完)
             float hp = _UI.value;
-            Debug.Log("before = " + hp);
-
-            if(Input.GetKeyDown(KeyCode.A))
-            {
-            //    Damage(10);
-            }
-            float a = Mathf.Lerp(_UI.minValue, hp, _interval);
-            _UI.value = a;
-            //float a = Mathf.Lerp(_UI.minValue, hp, _interval);
-            //_UI.value = a;
-            //Debug.Log(a);
+            _UI.value = Mathf.Lerp(_UI.value, _hp, _interval);
         }
 
         /// <summary>
