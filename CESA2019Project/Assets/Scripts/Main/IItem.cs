@@ -4,7 +4,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Game.Pleyer;
+using PrePro.Player;//プリプロ後にGame.Playerに変更
 
 /// <summary>
 /// アイテムの基底クラス
@@ -21,7 +21,7 @@ namespace Game.Item
         /// アイテムを取得したときに得られるアイテム効果
         /// (処理を書いてください)
         /// </summary>
-        protected virtual void GetItemSelf(Game.Pleyer.PlayerController player)
+        protected virtual void GetItemSelf(PrePro.Player.PlayerController player)
         {
 
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using MyInput;
 
 
 namespace PrePro.Player
@@ -11,7 +12,7 @@ namespace PrePro.Player
     {
 
         [System.Serializable]
-        struct Status {
+        public struct Status {
             public float speed;//移動ステータス
             public float attack;//攻撃ステータス
             public float oxygen;//酸素ステータス
@@ -31,6 +32,9 @@ namespace PrePro.Player
 
         [SerializeField] Status _status;
         [SerializeField] Slider _slider;
+        public float _oxygen = 100f;
+        public float _speed = 100f;
+        
 
 
 
@@ -38,15 +42,18 @@ namespace PrePro.Player
         void Start()
         {
             rate = 1;
+            //_oxygen = 100f;
             _status.speed = 100;
-            _status.attack = 50;
-            //_slider = GameObject.Find("Slider_O2Gage").GetComponent<Slider>();
-
+            
+            _status.oxygen = 100;
+            _slider = GameObject.Find("Slider_O2Gage").GetComponent<Slider>();
+            
         }
 
         // Update is called once per frame
         void Update()
         {
+            _slider.value = _status.oxygen;
             if (routine == null)
             {
                 Move();
@@ -54,9 +61,11 @@ namespace PrePro.Player
             guge.fillAmount = rate;
 
 
+            
             if (MyInputManager.AllController.X)
             {
-                Attack();
+               //攻撃
+               Attack();
             }
 
 
@@ -64,14 +73,17 @@ namespace PrePro.Player
 
         private void Move()
         {
-            Vector3 axis = this.transform.TransformDirection(new Vector3(0, 0, 1));
-            float input = -MyInputManager.AllController.LStick.x;
-            this.transform.RotateAround(target.transform.position, axis, input * _status.speed * Time.deltaTime);
+            Vector3 _axis = this.transform.TransformDirection(new Vector3(0, 0, 1));
+            float _input = -MyInputManager.AllController.LStick.x;
+            this.transform.RotateAround(target.transform.position, _axis, _input * _status.speed * Time.deltaTime);
         }
 
+        
         private void Attack()
         {
-            _status.speed = _status.speed + _status.attack;
+            Vector3 _axis = this.transform.TransformDirection(new Vector3(0, 0, 1));
+            //float _input = -MyInputManager.AllController.LStick.x;
+            transform.RotateAround(target.transform.position, _axis,  _status.attack * Time.deltaTime  * -1); //* _input//);
 
         }
 
@@ -156,6 +168,8 @@ namespace PrePro.Player
 
             //float startTime = Time.timeSinceLevelLoad;
 
+            //_slider.value -= fallValue;
+
             guge.fillAmount -= fallValue;
             yield return null;
             //while (guge.fillAmount != nokori)
@@ -175,24 +189,16 @@ namespace PrePro.Player
             //}
         }
 
+
+        public void AddSpeed(float _speed)
+        {
+            _status.speed += _speed;
+        }
+        //public void SetOxygen(float _oxygen)
+        //{
+        //    _status.oxygen = _oxygen;
+        //}
         
-        public void SetAttack(float attack)
-        {
-            //攻撃ステータスにアイテムに効果付与
-            _status.attack = attack;
-        }
-
-        public void SetSpeed(float speed)
-        {
-            //スピードステータスにアイテムに効果付与
-            _status.speed = speed;
-        }
-        public void SetOxygen(float oxygen)
-        {
-            //酸素ステータスにアイテムに効果付与
-            _status.oxygen = oxygen;
-        }
-
         
     }
 }
