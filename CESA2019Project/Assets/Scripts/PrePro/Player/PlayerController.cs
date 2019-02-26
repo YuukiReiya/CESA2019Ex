@@ -33,7 +33,7 @@ namespace PrePro.Player
         [SerializeField] Slider _slider;
         public float _oxygen = 100f;
         public float _speed = 100f;
-        
+        [SerializeField] float _frame;
 
 
 
@@ -80,29 +80,30 @@ namespace PrePro.Player
         
         public void Attack()
         {
-            Vector3 _axis = this.transform.InverseTransformDirection(new Vector3(0, 0, 1));
-            float _input = -MyInputManager.AllController.LStick.x;
-            transform.RotateAround(target.transform.position, _axis, _status.attack * Time.deltaTime * _input);
+            //Vector3 _axis = this.transform.InverseTransformDirection(new Vector3(0, 0, 1));
+            //float _input = -MyInputManager.AllController.LStick.x;
+            //transform.RotateAround(target.transform.position, _axis, _status.attack * Time.deltaTime * _input);
 
-            //StartCoroutine("AttackMove");
+            StartCoroutine("AttackMove");
         }
 
-        //private IEnumerator AttackMove()
-        //{
-        //    Vector3 _axis = this.transform.TransformDirection(new Vector3(0, 0, 1));
-        //    float _input = -MyInputManager.AllController.LStick.x;
+        private IEnumerator AttackMove()
+        {
+            Vector3 _axis = this.transform.TransformDirection(new Vector3(0, 0, 1));
+            
+
+
+            for (int i = 0; i < _frame; i++)
+            {
+                Debug.Log("攻撃");
+                transform.RotateAround(target.transform.position, _axis, _status.attack * Time.deltaTime * i);
+                yield return null;
+            }
 
             
-        //    for (int i = 0; i >60 ; i++)
-        //    {
-        //        transform.RotateAround(target.transform.position, _axis, _status.attack * Time.deltaTime * _input);
-        //        yield return null;
-        //    }
-
-        //    for
 
 
-        //}
+        }
 
 
 

@@ -5767,11 +5767,12 @@ MonoBehaviour:
   time: 1
   _status:
     speed: 100
-    attack: 0
+    attack: -30
     oxygen: 100
   _slider: {fileID: 281541043}
   _oxygen: 50
   _speed: 0
+  _frame: 15
 --- !u!50 &2079662719
 Rigidbody2D:
   serializedVersion: 4
