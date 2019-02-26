@@ -53,7 +53,6 @@ namespace PrePro.Player
         // Update is called once per frame
         void Update()
         {
-            _slider.value = _status.oxygen;
             if (routine == null)
             {
                 Move();
