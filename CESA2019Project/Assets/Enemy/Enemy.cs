@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     //一秒当たりの回転角度
     public float _angle = 30f;
     int x = 1;
+    public GameObject PartclePrefabs;
 
     //回転の中心をとるために使う変数
     [SerializeField] private GameObject target;
@@ -49,12 +50,18 @@ public class Enemy : MonoBehaviour
         Vector3 axis = transform.TransformDirection(new Vector3(0, 0, 1));
         transform.RotateAround(target.transform.position, axis, _angle * x * Time.deltaTime);
 
-        if (Input.GetKey(KeyCode.Space))
+        //敵が攻撃されたとき
+        //if ()
         {
-            //Space押したら敵が消える
-            Destroy(this.gameObject);
-            Debug.Log("死亡");
+           // Destroy(this.gameObject);
+           // Debug.Log("死亡");
         }
+        //else　if()
+        {
+            //敵から攻撃をくらったとき
+
+           // Debug.Log("ゲージ消費");
+        }
+
     }
-   
 }

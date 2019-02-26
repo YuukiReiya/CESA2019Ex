@@ -50,11 +50,11 @@ public class CameraB : MonoBehaviour
     {
         // 画面左下のワールド座標をビューポートから取得
         // Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
-        Vector2 min = new Vector2(-2,-2);
+        Vector2 min = new Vector2(-3,-3);
 
         // 画面右上のワールド座標をビューポートから取得
         Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
-        max = new Vector2(2,2);
+        max = new Vector2(3,3);
 
         Vector3 pos = transform.position;
 
