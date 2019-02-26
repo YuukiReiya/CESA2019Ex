@@ -35,6 +35,18 @@ public class Enemy : MonoBehaviour
             return;
 
         }
+        //敵が攻撃されたとき
+        //if ()
+        {
+            Destroy(this.gameObject);
+            Debug.Log("死亡");
+        }
+        //else if ()
+        {
+            //敵から攻撃をくらったとき
+
+            Debug.Log("ゲージ消費");
+        }
 
         Debug.Log("当たってる");
 
@@ -49,19 +61,6 @@ public class Enemy : MonoBehaviour
         //	Sampleを中心に自分を現在の上方向に、毎秒angle分だけ回転する。
         Vector3 axis = transform.TransformDirection(new Vector3(0, 0, 1));
         transform.RotateAround(target.transform.position, axis, _angle * x * Time.deltaTime);
-
-        //敵が攻撃されたとき
-        //if ()
-        {
-           // Destroy(this.gameObject);
-           // Debug.Log("死亡");
-        }
-        //else　if()
-        {
-            //敵から攻撃をくらったとき
-
-           // Debug.Log("ゲージ消費");
-        }
 
     }
 }
