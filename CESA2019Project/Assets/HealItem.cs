@@ -12,9 +12,9 @@ public class HealItem : Game.Item.IItem
     protected override void GetItemSelf(PlayerController player)
     {
         base.GetItemSelf(player);
-        
+
         //酸素を回復
-        player._oxygen += _healOxygen;
+        player.AddOxygen(_healOxygen);
         
 
         Debug.Log("回復！");

@@ -26,20 +26,21 @@ namespace PrePro.Player
         [SerializeField] AnimationCurve curve;
         [SerializeField] float time = 2;
         private IEnumerator routine;
-
+        
         float rate;
 
         [SerializeField] Status _status;
         [SerializeField] Slider _slider;
-        public float _oxygen = 100f;
-        public float _speed = 100f;
+        public float A  { get { return _status.speed; } }
         [SerializeField] float _frame;
 
+        public bool isAttack;
 
 
         // Start is called before the first frame update
         void Start()
         {
+            isAttack = false; 
             rate = 1;
             //_oxygen = 100f;
             _status.speed = 100;
@@ -95,12 +96,13 @@ namespace PrePro.Player
 
             for (int i = 0; i < _frame; i++)
             {
+                isAttack = true;
                 Debug.Log("攻撃");
                 transform.RotateAround(target.transform.position, _axis, _status.attack * Time.deltaTime * i);
                 yield return null;
             }
 
-            
+            isAttack = false;
 
 
         }
@@ -213,11 +215,11 @@ namespace PrePro.Player
         {
             _status.speed += _speed;
         }
-        //public void SetOxygen(float _oxygen)
-        //{
-        //    _status.oxygen = _oxygen;
-        //}
-        
-        
+        public void AddOxygen(float _oxygen)
+        {
+            _status.oxygen += _oxygen;
+        }
+
+
     }
 }
