@@ -56,7 +56,7 @@ public class CameraB : MonoBehaviour
         Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
         max = new Vector2(2,2);
 
-        Vector2 pos = transform.position;
+        Vector3 pos = transform.position;
 
         pos.x = Mathf.Clamp(pos.x, min.x, max.x);
         pos.y = Mathf.Clamp(pos.y, min.y, max.y);
