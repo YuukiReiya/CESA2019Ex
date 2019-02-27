@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Game.Pleyer
+namespace PrePro.Pleyer
 {
     /// <summary>
     /// HPのコントローラー

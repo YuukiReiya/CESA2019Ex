@@ -6,12 +6,12 @@ using UnityEngine.SceneManagement;
 public class s : Framework.SingletonMonoBehaviour<s>
 {
     [SerializeField] int index = 0;
-    Game.Pleyer.HPController h;
+    PrePro.Pleyer.HPController h;
 
     // Start is called before the first frame update
      void Start()
     {
-        h = GameObject.FindObjectOfType<Game.Pleyer.HPController>();
+        h = GameObject.FindObjectOfType<PrePro.Pleyer.HPController>();
     }
 
     // Update is called once per frame

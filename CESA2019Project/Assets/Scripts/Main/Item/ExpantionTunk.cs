@@ -4,7 +4,7 @@ using PrePro.Player;
 using UnityEngine;
 
 
-namespace Game.Item
+namespace PrePro.Item
 {
     public class ExpantionTunk : IItem
     {

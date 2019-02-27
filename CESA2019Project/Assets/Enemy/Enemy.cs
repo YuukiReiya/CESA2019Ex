@@ -4,7 +4,7 @@ using UnityEngine;
 using MethodExpansion;
 
 //  名前空間で区切ること！
-namespace Game.Enemy
+namespace PrePro.Enemy
 {
     public class Enemy : MonoBehaviour
     {

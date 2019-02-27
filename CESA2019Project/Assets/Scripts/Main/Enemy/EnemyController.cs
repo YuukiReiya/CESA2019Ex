@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game.Enemy
+namespace PrePro.Enemy
 {
     public class EnemyController : Framework.SingletonMonoBehaviour<EnemyController>
     {

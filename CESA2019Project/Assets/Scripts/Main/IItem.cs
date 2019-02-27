@@ -9,7 +9,7 @@ using PrePro.Player;//プリプロ後にGame.Playerに変更
 /// <summary>
 /// アイテムの基底クラス
 /// </summary>
-namespace Game.Item
+namespace PrePro.Item
 {
     public abstract class IItem : MonoBehaviour
     {
