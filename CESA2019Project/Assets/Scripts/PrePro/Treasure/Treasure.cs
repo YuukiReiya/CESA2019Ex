@@ -28,7 +28,7 @@ namespace PrePro.Treasure
                 {
                     Destroy(this.gameObject);
                     if(!isFake)
-                    GameSceneController.Instance.GetTreasure();
+                    Game.Scene.GameSceneController.Instance.GetTreasure();
                 }
             }
             catch
