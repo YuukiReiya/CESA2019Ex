@@ -12,8 +12,7 @@ namespace Game.Scene
         [SerializeField] int clearNum = 3;
         int treasureCount = 0;
         [SerializeField] Text text;
-        [SerializeField] Text clear;
-        [SerializeField] PrePro.Player.PlayerController _player;
+        [SerializeField] Player.PlayerController _player;
         [SerializeField] GameObject _canvas;
         [SerializeField] GameObject _clearImage;
         [SerializeField] GameObject _gameoverImage;
@@ -28,7 +27,7 @@ namespace Game.Scene
 
         private void Reset()
         {
-            _player = FindObjectOfType<PrePro.Player.PlayerController>();
+            _player = FindObjectOfType<Player.PlayerController>();
         }
 
         // Start is called before the first frame update
@@ -45,13 +44,13 @@ namespace Game.Scene
             if (treasureCount == clearNum)
             {
                 _state = State.CLEAR;
-                clear.gameObject.SetActive(true);
                 _clearImage.SetActive(true);
             }
 
             //  ゲームオーバー処理
-            //else if(_player.)
+            else if (_player.HP <= 0)
             {
+                _state = State.GAME_OVER;
                 _gameoverImage.SetActive(true);
             }
             text.text = "☆  " + treasureCount + " / " + clearNum;

@@ -25,6 +25,14 @@ namespace Game.Camera
         // Update is called once per frame
         void Update()
         {
+            //---------------------------------------------------------
+            //  番場 編集
+            if(Scene.GameSceneController.Instance._state!=Scene.GameSceneController.State.PLAY)
+            {
+                return;
+            }
+            //---------------------------------------------------------
+
             // Rスティックでカメラを動かす
             var pos = transform.position;
             //Debug.Log(Input.GetAxis("Horizontal"));
