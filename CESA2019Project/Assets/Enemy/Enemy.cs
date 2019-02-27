@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PrePro.Player;
 
 public class Enemy : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Enemy : MonoBehaviour
     //回転の中心をとるために使う変数
     [SerializeField] private GameObject target;
 
+    private Game.Pleyer.HPController _hpc;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +22,7 @@ public class Enemy : MonoBehaviour
         //自分をZ軸を中心に0～360でランダムに回転させる
         // transform.Rotate(new Vector3(0, 0, Random.Range(0, 360)), Space.World);
         this.transform.Rotate(new Vector3(0, 0, Random.Range(0, 360)), _angle);
-
+        _hpc = FindObjectOfType<Game.Pleyer.HPController>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -35,16 +37,18 @@ public class Enemy : MonoBehaviour
             return;
 
         }
+        PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+
         //敵が攻撃されたとき
-        //if ()
+        if (player.isAttack)
         {
             Destroy(this.gameObject);
             Debug.Log("死亡");
         }
-        //else if ()
+        else
         {
             //敵から攻撃をくらったとき
-
+            _hpc.Damage(20);
             Debug.Log("ゲージ消費");
         }
 
