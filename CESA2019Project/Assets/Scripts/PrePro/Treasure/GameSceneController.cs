@@ -14,6 +14,9 @@ namespace Game.Scene
         [SerializeField] Text text;
         [SerializeField] Text clear;
         [SerializeField] PrePro.Player.PlayerController _player;
+        [SerializeField] GameObject _canvas;
+        [SerializeField] GameObject _clearImage;
+        [SerializeField] GameObject _gameoverImage;
 
         public enum State
         {
@@ -31,7 +34,8 @@ namespace Game.Scene
         // Start is called before the first frame update
         void Start()
         {
-
+            _clearImage.SetActive(false);
+            _gameoverImage.SetActive(false);
         }
 
         // Update is called once per frame
@@ -42,26 +46,30 @@ namespace Game.Scene
             {
                 _state = State.CLEAR;
                 clear.gameObject.SetActive(true);
+                _clearImage.SetActive(true);
             }
 
             //  ゲームオーバー処理
             //else if(_player.)
             {
-                
+                _gameoverImage.SetActive(true);
             }
             text.text = "☆  " + treasureCount + " / " + clearNum;
 
             //  ゲームオーバー & ゲームクリア処理
             if (_state != State.PLAY)
             {
-                //  A:タイトル遷移
+                //  アクティブ切替
+                _canvas.gameObject.SetActive(true);
 
-                //  B:リトライ
-                if(MyInput.MyInputManager.AllController.B)
+                //  A:リトライ
+                if(MyInput.MyInputManager.AllController.A)
                 {
                     //  シーンの再読み込み
                     SceneManager.LoadScene(0);
                 }
+
+                //  B:タイトル遷移
             }
 
         }
