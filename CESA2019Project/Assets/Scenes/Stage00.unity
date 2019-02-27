@@ -6054,7 +6054,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextArea: {fileID: 274879491}
-  nextPlanet: {fileID: 1189508492}
+  nextPlanet: {fileID: 1193930258}
   nextCameraPos: {fileID: 0}
 --- !u!58 &763537160
 CircleCollider2D:
@@ -6690,8 +6690,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfaf90c8f2049ea4f87ef9fa65a62953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextArea: {fileID: 1410060077}
-  nextPlanet: {fileID: 432284347}
+  nextArea: {fileID: 1283588570}
+  nextPlanet: {fileID: 273509717}
   nextCameraPos: {fileID: 0}
 --- !u!58 &839538112
 CircleCollider2D:
@@ -10419,8 +10419,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfaf90c8f2049ea4f87ef9fa65a62953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextArea: {fileID: 1410060077}
-  nextPlanet: {fileID: 432284347}
+  nextArea: {fileID: 839538109}
+  nextPlanet: {fileID: 336883317}
   nextCameraPos: {fileID: 0}
 --- !u!58 &1283588573
 CircleCollider2D:
@@ -12883,7 +12883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextArea: {fileID: 320113212}
-  nextPlanet: {fileID: 336883317}
+  nextPlanet: {fileID: 394577081}
   nextCameraPos: {fileID: 0}
 --- !u!58 &1600658851
 CircleCollider2D:
@@ -16427,7 +16427,7 @@ MonoBehaviour:
   time: 1
   _status:
     speed: 100
-    attack: -30
+    attack: 30
     oxygen: 100
   _frame: 15
   isAttack: 0

@@ -48,7 +48,7 @@ namespace PrePro.Player
             _hpc = FindObjectOfType<Game.Pleyer.HPController>();
             _status.oxygen = 100;
 
-            _dre = 1;
+            _dre = -1;
 
 
         }
@@ -88,8 +88,16 @@ namespace PrePro.Player
         private void Move()
         {
             Vector3 _axis = this.transform.TransformDirection(new Vector3(0, 0, 1));
-            float _input = -MyInputManager.AllController.LStick.x;
-            this.transform.RotateAround(target.transform.position, _axis, _input * _status.speed * Time.deltaTime);
+            float _input = MyInputManager.AllController.LStick.x;
+            if (_input>0)
+            {
+                _dre = -1;
+            }
+            else if (_input<0)
+            {
+                _dre = 1;
+            }
+            this.transform.RotateAround(target.transform.position, _axis, Mathf.Abs(_input) * _status.speed * Time.deltaTime*_dre);
         }
 
         /// <summary>
@@ -105,6 +113,7 @@ namespace PrePro.Player
         private IEnumerator AttackMove()
         {
             Vector3 _axis = this.transform.TransformDirection(new Vector3(0, 0, 1));
+
             
 
             for (int i = 0; i < _frame; i++)
@@ -112,7 +121,7 @@ namespace PrePro.Player
 
                 isAttack = true;
                 Debug.Log("攻撃");
-                transform.RotateAround(target.transform.position, _axis, _status.attack  * Time.deltaTime * i *_dre);
+                transform.RotateAround(target.transform.position, _axis, _status.attack  * Time.deltaTime * i * _dre);
                 yield return null;
             }
 
