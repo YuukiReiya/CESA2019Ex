@@ -20,7 +20,6 @@ namespace PrePro.Player
 
         [SerializeField] Sprite[] idle;
         [SerializeField] Sprite[] run;
-        [SerializeField] Image guge;
         [SerializeField] GameObject target;
         //[SerializeField] float moveSpeed = 100;
         [SerializeField] float jetSpeed = 5;
@@ -31,7 +30,6 @@ namespace PrePro.Player
         float rate;
 
         [SerializeField] Status _status;
-        [SerializeField] Slider _slider;
         public float A  { get { return _status.speed; } }
         [SerializeField] float _frame;
 
@@ -47,8 +45,8 @@ namespace PrePro.Player
             _status.speed = 100;
             _hpc = FindObjectOfType<Game.Pleyer.HPController>();
             _status.oxygen = 100;
-            _slider = GameObject.Find("Slider_O2Gage").GetComponent<Slider>();
             
+
         }
 
         // Update is called once per frame
@@ -58,7 +56,6 @@ namespace PrePro.Player
             {
                 Move();
             }
-            guge.fillAmount = rate;
 
 
             
@@ -68,10 +65,16 @@ namespace PrePro.Player
                Attack();
             }
 
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.A))
             {
                 _hpc.Heal(20);
             }
+
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                _hpc.Damage(20);
+            }
+
         }
 
         private void Move()
@@ -82,11 +85,9 @@ namespace PrePro.Player
         }
 
         
-        public void Attack()
+        private void Attack()
         {
-            //Vector3 _axis = this.transform.InverseTransformDirection(new Vector3(0, 0, 1));
-            //float _input = -MyInputManager.AllController.LStick.x;
-            //transform.RotateAround(target.transform.position, _axis, _status.attack * Time.deltaTime * _input);
+            _hpc.Damage(10);
 
             StartCoroutine("AttackMove");
         }
@@ -95,10 +96,11 @@ namespace PrePro.Player
         {
             Vector3 _axis = this.transform.TransformDirection(new Vector3(0, 0, 1));
             
-
+            
 
             for (int i = 0; i < _frame; i++)
             {
+
                 isAttack = true;
                 Debug.Log("攻撃");
                 transform.RotateAround(target.transform.position, _axis, _status.attack * Time.deltaTime * i);
@@ -118,6 +120,7 @@ namespace PrePro.Player
             if (!MyInputManager.AllController.A) { return; }
             if (routine != null) { return; }
 
+            
             //  メソッド呼び出し
             routine = InterplanetaryMovement(
                 toArea,
@@ -223,8 +226,14 @@ namespace PrePro.Player
         public void AddOxygen(float _oxygen)
         {
             _status.oxygen += _oxygen;
+            _hpc.Heal((uint)_oxygen);
         }
 
-
+        public void DamageOxygen(float oxygen)
+        {
+            _status.oxygen -= oxygen;
+            _hpc.Damage((uint)oxygen);
+        }
+            
     }
 }
