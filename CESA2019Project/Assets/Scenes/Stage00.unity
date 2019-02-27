@@ -7093,6 +7093,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e0ce96cad198404ea316c2597242407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _minRect: {x: -2, y: -11}
+  _maxRect: {x: 8, y: 5}
 --- !u!1 &907552966
 GameObject:
   m_ObjectHideFlags: 0
@@ -16181,6 +16183,7 @@ MonoBehaviour:
   clearNum: 3
   text: {fileID: 554926148}
   clear: {fileID: 1594772036}
+  _player: {fileID: 0}
 --- !u!4 &2042085231
 Transform:
   m_ObjectHideFlags: 0
