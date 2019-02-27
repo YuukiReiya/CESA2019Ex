@@ -66,9 +66,9 @@ namespace Game.Pleyer
         /// 上限値の変更
         /// </summary>
         /// <param name="value"></param>
-        public void MaxOverwrite(float value)
+        public void AddMaxValue(float value)
         {
-            _UI.maxValue = value;
+            _UI.maxValue += value;
         }
 
         /// <summary>
