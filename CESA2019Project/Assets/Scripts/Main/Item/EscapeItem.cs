@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using PrePro.Player;
 using UnityEngine;
 
-namespace Game.Item
+namespace PrePro.Item
 {
     public class Escape : IItem
     {

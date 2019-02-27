@@ -26,7 +26,7 @@ namespace PrePro.Player
         [SerializeField] AnimationCurve curve;
         [SerializeField] float time = 2;
         private IEnumerator routine;
-        private Game.Pleyer.HPController _hpc;
+        private PrePro.Pleyer.HPController _hpc;
         float rate;
 
         [SerializeField] Status _status;
@@ -45,7 +45,7 @@ namespace PrePro.Player
             rate = 1;
             //_oxygen = 100f;
             _status.speed = 100;
-            _hpc = FindObjectOfType<Game.Pleyer.HPController>();
+            _hpc = FindObjectOfType<PrePro.Pleyer.HPController>();
             _status.oxygen = 100;
 
             _dre = -1;

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PrePro.Player;
 
-public class BoostItem : Game.Item.IItem
+public class BoostItem : PrePro.Item.IItem
 {
     [SerializeField] float _upJetSpeed = 100f;
     [SerializeField] int _time = 10;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using PrePro.Player;
 using UnityEngine;
 
-namespace Game.Item
+namespace PrePro.Item
 {
     public class StunBomb : IItem
     {
@@ -11,7 +11,7 @@ namespace Game.Item
         {
             base.GetItem();
 
-            Game.Enemy.EnemyController.Instance.Stun();
+            PrePro.Enemy.EnemyController.Instance.Stun();
         }
 
     }

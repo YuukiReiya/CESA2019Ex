@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using PrePro.Player;//プリプロ後にGame.Playerに変更
 using UnityEngine;
-public class HealItem : Game.Item.IItem
+public class HealItem : PrePro.Item.IItem
 {
     float _healOxygen = 30;//酸素の回復値
     
