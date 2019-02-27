@@ -54,6 +54,8 @@ namespace Game.Player
         // Update is called once per frame
         void Update()
         {
+            if (Scene.GameSceneController.Instance._state != Scene.GameSceneController.State.PLAY) { return; }
+
             if (routine == null)
             {
                 Move();
@@ -66,6 +68,7 @@ namespace Game.Player
                Attack();
             }
 
+            //Debug.Log(HP);
         }
         public void OxygenLimtesOver(float value)
         {
@@ -112,8 +115,6 @@ namespace Game.Player
             }
 
             isAttack = false;
-
-
         }
 
 

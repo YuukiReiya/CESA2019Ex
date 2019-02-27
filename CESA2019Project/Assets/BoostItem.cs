@@ -8,13 +8,12 @@ using Game.Player;
 
 public class BoostItem : Game.Item.IItem
 {
-    [SerializeField] float _upJetSpeed = 100f;
+    [SerializeField] float _upJetSpeed = 50f;
     [SerializeField] int _time = 10;
     protected override void GetItemSelf(PlayerController player)
     {
 
         //スピードアップ
-        //player.AddSpeed(_upJetSpeed);
         player.StartCoroutine(Timeover(player));
 
         Debug.Log("ブースト！");

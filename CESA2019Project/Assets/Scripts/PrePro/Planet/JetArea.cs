@@ -49,10 +49,6 @@ namespace Game.Planet
                 //  接触したのはプレイヤーなのでGetComponentで取得
                 Player.PlayerController player = collision.GetComponent<Player.PlayerController>();
                 player.JetAction(nextArea, nextPlanet);
-
-                
-                //if(MyInputManager.AllController.A)
-                //Camera.CameraController.Instance.Move(nextCameraPos, 1);
             }
             catch
             {
