@@ -93,8 +93,8 @@ namespace Game.Player
         //攻撃関数
         private void Attack()
         {
-            _hpc.Damage(10);
-
+            
+            DamageOxygen(10);
             StartCoroutine("AttackMove");
         }
 
@@ -137,7 +137,9 @@ namespace Game.Player
             );
             rate -= 0.15f;
             StartCoroutine(routine);
-            _hpc.Damage(20);
+           
+            DamageOxygen(20);
+
         }
 
         //  惑星間移動

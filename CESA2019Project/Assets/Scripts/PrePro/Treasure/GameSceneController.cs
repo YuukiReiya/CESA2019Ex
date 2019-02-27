@@ -35,6 +35,7 @@ namespace Game.Scene
         {
             _clearImage.SetActive(false);
             _gameoverImage.SetActive(false);
+            _state = State.PLAY;
         }
 
         // Update is called once per frame

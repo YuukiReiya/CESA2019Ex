@@ -16748,11 +16748,10 @@ MonoBehaviour:
   isDefaultDontDestroy: 1
   clearNum: 3
   text: {fileID: 554926148}
-  clear: {fileID: 1594772036}
-  _player: {fileID: 0}
-  _canvas: {fileID: 0}
-  _clearImage: {fileID: 0}
-  _gameoverImage: {fileID: 0}
+  _player: {fileID: 2079662718}
+  _canvas: {fileID: 315673857}
+  _clearImage: {fileID: 1747435379}
+  _gameoverImage: {fileID: 1357882412}
 --- !u!4 &2042085231
 Transform:
   m_ObjectHideFlags: 0
@@ -16971,7 +16970,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7e03b581637ab4f58b6ecb951c8682a9, type: 3}
   run: []
   target: {fileID: 1482370424}
-  jetSpeed: 5
   curve:
     serializedVersion: 2
     m_Curve:
@@ -16996,13 +16994,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  time: 1
+  _time: 1
   _status:
     speed: 100
     attack: 30
     oxygen: 100
   _frame: 15
-  isAttack: 0
 --- !u!50 &2079662719
 Rigidbody2D:
   serializedVersion: 4
