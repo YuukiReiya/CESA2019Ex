@@ -9,7 +9,7 @@ namespace PrePro.Treasure
     {
         //  レイヤー
         const int PLAYER_LAYER = 9;
-
+       [SerializeField] bool isFake;
 
         private void OnTriggerStay2D(Collider2D collision)
         {
@@ -27,11 +27,13 @@ namespace PrePro.Treasure
                 if (MyInputManager.AllController.B)
                 {
                     Destroy(this.gameObject);
+                    if(!isFake)
                     GameSceneController.Instance.GetTreasure();
                 }
             }
             catch
             {
+
             }
 
 

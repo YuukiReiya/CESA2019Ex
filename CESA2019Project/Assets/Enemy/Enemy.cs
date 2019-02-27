@@ -37,7 +37,32 @@ public class Enemy : MonoBehaviour
 
         Debug.Log("当たってる");
 
-        x = 0;
+        //--------------------------------------------
+        //  番場 編集
+        PrePro.Player.PlayerController player = null;
+        try
+        {
+             player = collision.GetComponent<PrePro.Player.PlayerController>();
+        }
+        catch
+        {
+            Debug.LogError("Player取得で例外発生");
+        }
+
+        //  攻撃中？
+        if (player.isAttack)
+        {
+            //  敵オブジェクト破棄
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            //  酸素ゲージ減少
+            player.DamageOxygen(20);
+        }
+        //--------------------------------------------
+
+        //x = 0;
 
     }
 
