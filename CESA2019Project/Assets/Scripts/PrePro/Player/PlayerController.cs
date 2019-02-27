@@ -32,6 +32,7 @@ namespace Game.Player
         [SerializeField] float _frame;
 
         [System.NonSerialized] public bool isAttack;//攻撃フラグをにする
+        bool _isMove;
         float _dre;//Playerの方向とる
 
         public float HP { get { return _status.oxygen; } }
@@ -40,6 +41,7 @@ namespace Game.Player
         // Start is called before the first frame update
         void Start()
         {
+            _isMove = false;
             isAttack = false; 
             rate = 1;
             _status.speed = 100;
@@ -62,7 +64,8 @@ namespace Game.Player
             }
             
             //Xをおしたら？
-            if (MyInputManager.AllController.X)
+            if (MyInputManager.AllController.X
+                && !_isMove)
             {
                //攻撃
                Attack();
@@ -101,10 +104,9 @@ namespace Game.Player
         //攻撃のコルーチン
         private IEnumerator AttackMove()
         {
-            Vector3 _axis = this.transform.TransformDirection(new Vector3(0, 0, 1));
-
             
-
+            Vector3 _axis = this.transform.TransformDirection(new Vector3(0, 0, 1));
+            
             for (int i = 0; i < _frame; i++)
             {
 
@@ -115,17 +117,20 @@ namespace Game.Player
             }
 
             isAttack = false;
+            
         }
 
 
 
         public void JetAction(GameObject toArea, GameObject target)
         {
+            
             //  早期リターン
             if (!MyInputManager.AllController.A) { return; }
             if (routine != null) { return; }
 
-            
+            _isMove = true;
+
             //  メソッド呼び出し
             routine = InterplanetaryMovement(
                 toArea,
@@ -133,6 +138,7 @@ namespace Game.Player
             {
                 routine = null;
                 this.target = target;
+                _isMove = false;
             }
             );
             rate -= 0.15f;

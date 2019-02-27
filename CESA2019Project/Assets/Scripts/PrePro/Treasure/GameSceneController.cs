@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Framework;
 using UnityEngine.SceneManagement;
+using MethodExpansion;
 
 namespace Game.Scene
 {
@@ -16,6 +17,7 @@ namespace Game.Scene
         [SerializeField] GameObject _canvas;
         [SerializeField] GameObject _clearImage;
         [SerializeField] GameObject _gameoverImage;
+        bool _isInput = false;
 
         public enum State
         {
@@ -36,6 +38,7 @@ namespace Game.Scene
             _clearImage.SetActive(false);
             _gameoverImage.SetActive(false);
             _state = State.PLAY;
+            _isInput = false;
         }
 
         // Update is called once per frame
@@ -46,6 +49,7 @@ namespace Game.Scene
             {
                 _state = State.CLEAR;
                 _clearImage.SetActive(true);
+                this.DelayMethod(() => { _isInput = true; }, 10);
             }
 
             //  ゲームオーバー処理
@@ -53,11 +57,12 @@ namespace Game.Scene
             {
                 _state = State.GAME_OVER;
                 _gameoverImage.SetActive(true);
+                this.DelayMethod(() => { _isInput = true; }, 10);
             }
             text.text = "☆  " + treasureCount + " / " + clearNum;
 
             //  ゲームオーバー & ゲームクリア処理
-            if (_state != State.PLAY)
+            if (_isInput)
             {
                 //  アクティブ切替
                 _canvas.gameObject.SetActive(true);

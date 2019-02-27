@@ -6211,8 +6211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfaf90c8f2049ea4f87ef9fa65a62953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextArea: {fileID: 274879491}
-  nextPlanet: {fileID: 1193930258}
+  nextArea: {fileID: 571959518}
+  nextPlanet: {fileID: 1189508492}
   nextCameraPos: {fileID: 0}
 --- !u!58 &763537160
 CircleCollider2D:
@@ -16745,7 +16745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a7b897f3d351c2429d4e39b2f95da50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDefaultDontDestroy: 1
+  isDefaultDontDestroy: 0
   clearNum: 3
   text: {fileID: 554926148}
   _player: {fileID: 2079662718}
