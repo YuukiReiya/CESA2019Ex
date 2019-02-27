@@ -4,9 +4,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PrePro.Player;
+using Game.Player;
 
-public class BoostItem : PrePro.Item.IItem
+public class BoostItem : Game.Item.IItem
 {
     [SerializeField] float _upJetSpeed = 100f;
     [SerializeField] int _time = 10;
@@ -27,12 +27,12 @@ public class BoostItem : PrePro.Item.IItem
         player.AddSpeed(_upJetSpeed);
         for (int i = 0; i < _time*60; i++)
         {
-        Debug.Log("減速" + player.A);
+        Debug.Log("減速");
         yield return null;
 
         }
         player.AddSpeed(-_upJetSpeed);
-        Debug.Log("減速" + player.A);
+        Debug.Log("減速");
 
     }
 }

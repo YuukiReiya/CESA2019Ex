@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MyInput;
 
-namespace PrePro.Treasure
+namespace Game.Treasure
 {
     public class Treasure : MonoBehaviour
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using PrePro.Player;
+using Game.Player;
 
 
 public class OxygenGage : MonoBehaviour
