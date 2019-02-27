@@ -34,7 +34,9 @@ namespace PrePro.Player
         [SerializeField] float _frame;
 
         public bool isAttack;
+        float _dre;
 
+        
 
         // Start is called before the first frame update
         void Start()
@@ -45,7 +47,9 @@ namespace PrePro.Player
             _status.speed = 100;
             _hpc = FindObjectOfType<Game.Pleyer.HPController>();
             _status.oxygen = 100;
-            
+
+            _dre = 1;
+
 
         }
 
@@ -76,6 +80,10 @@ namespace PrePro.Player
             }
 
         }
+        void OxygenLimtesOver(float value)
+        {
+            
+        }
 
         private void Move()
         {
@@ -84,7 +92,9 @@ namespace PrePro.Player
             this.transform.RotateAround(target.transform.position, _axis, _input * _status.speed * Time.deltaTime);
         }
 
-        
+        /// <summary>
+        /// 
+        /// </summary>
         private void Attack()
         {
             _hpc.Damage(10);
@@ -96,14 +106,13 @@ namespace PrePro.Player
         {
             Vector3 _axis = this.transform.TransformDirection(new Vector3(0, 0, 1));
             
-            
 
             for (int i = 0; i < _frame; i++)
             {
 
                 isAttack = true;
                 Debug.Log("攻撃");
-                transform.RotateAround(target.transform.position, _axis, _status.attack * Time.deltaTime * i);
+                transform.RotateAround(target.transform.position, _axis, _status.attack  * Time.deltaTime * i );
                 yield return null;
             }
 
