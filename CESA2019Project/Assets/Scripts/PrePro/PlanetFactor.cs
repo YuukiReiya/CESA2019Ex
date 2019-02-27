@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PrePro.Planet
+namespace Game.Planet
 {
     public class PlanetFactor : MonoBehaviour
     {

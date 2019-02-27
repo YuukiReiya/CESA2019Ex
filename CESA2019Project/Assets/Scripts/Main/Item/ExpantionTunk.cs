@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using PrePro.Player;
+using Game.Player;
 using UnityEngine;
 
 
-namespace PrePro.Item
+namespace Game.Item
 {
     public class ExpantionTunk : IItem
     {

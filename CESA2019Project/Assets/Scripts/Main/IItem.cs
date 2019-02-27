@@ -4,12 +4,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PrePro.Player;//プリプロ後にGame.Playerに変更
+using Game.Player;//プリプロ後にGame.Playerに変更
 
 /// <summary>
 /// アイテムの基底クラス
 /// </summary>
-namespace PrePro.Item
+namespace Game.Item
 {
     public abstract class IItem : MonoBehaviour
     {
@@ -21,7 +21,7 @@ namespace PrePro.Item
         /// アイテムを取得したときに得られるアイテム効果
         /// (処理を書いてください)
         /// </summary>
-        protected virtual void GetItemSelf(PrePro.Player.PlayerController player)
+        protected virtual void GetItemSelf(Game.Player.PlayerController player)
         {
 
         }

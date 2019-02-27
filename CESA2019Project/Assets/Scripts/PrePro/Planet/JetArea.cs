@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MyInput;
 
-namespace PrePro.Planet
+namespace Game.Planet
 {
     public class JetArea : MonoBehaviour
     {

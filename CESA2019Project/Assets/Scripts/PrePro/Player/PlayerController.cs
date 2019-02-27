@@ -6,7 +6,7 @@ using System;
 using MyInput;
 
 
-namespace PrePro.Player
+namespace Game.Player
 {
     public class PlayerController : MonoBehaviour
     {
@@ -20,22 +20,21 @@ namespace PrePro.Player
 
         [SerializeField] Sprite[] idle;
         [SerializeField] Sprite[] run;
-        [SerializeField] GameObject target;
-        //[SerializeField] float moveSpeed = 100;
-        [SerializeField] float jetSpeed = 5;
+        [SerializeField] GameObject target;//移動中心のオブジェクト
         [SerializeField] AnimationCurve curve;
-        [SerializeField] float time = 2;
+        [SerializeField] float _time = 1;
         private IEnumerator routine;
-        private PrePro.Pleyer.HPController _hpc;
+        private Game.Pleyer.HPController _hpc;
         float rate;
 
         [SerializeField] Status _status;
-        public float A  { get { return _status.speed; } }
+
         [SerializeField] float _frame;
 
-        public bool isAttack;
-        float _dre;
+        [System.NonSerialized] public bool isAttack;//攻撃フラグをにする
+        float _dre;//Playerの方向とる
 
+        public float HP { get { return _status.oxygen; } }
         
 
         // Start is called before the first frame update
@@ -43,9 +42,8 @@ namespace PrePro.Player
         {
             isAttack = false; 
             rate = 1;
-            //_oxygen = 100f;
             _status.speed = 100;
-            _hpc = FindObjectOfType<PrePro.Pleyer.HPController>();
+            _hpc = FindObjectOfType<Game.Pleyer.HPController>();
             _status.oxygen = 100;
 
             _dre = -1;
@@ -60,23 +58,12 @@ namespace PrePro.Player
             {
                 Move();
             }
-
-
             
+            //Xをおしたら？
             if (MyInputManager.AllController.X)
             {
                //攻撃
                Attack();
-            }
-
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                _hpc.Heal(20);
-            }
-
-            if (Input.GetKeyDown(KeyCode.B))
-            {
-                _hpc.Damage(20);
             }
 
         }
@@ -100,9 +87,7 @@ namespace PrePro.Player
             this.transform.RotateAround(target.transform.position, _axis, Mathf.Abs(_input) * _status.speed * Time.deltaTime*_dre);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
+        //攻撃関数
         private void Attack()
         {
             _hpc.Damage(10);
@@ -110,6 +95,7 @@ namespace PrePro.Player
             StartCoroutine("AttackMove");
         }
 
+        //攻撃のコルーチン
         private IEnumerator AttackMove()
         {
             Vector3 _axis = this.transform.TransformDirection(new Vector3(0, 0, 1));
@@ -150,7 +136,7 @@ namespace PrePro.Player
             );
             rate -= 0.15f;
             StartCoroutine(routine);
-            StartCoroutine(GageFall(time, rate));
+            _hpc.Damage(20);
         }
 
         //  惑星間移動
@@ -180,7 +166,7 @@ namespace PrePro.Player
                 Vector3 euler = this.transform.rotation.eulerAngles;
 
                 //  移動終了 & 回転終了
-                if (diff > time)
+                if (diff > _time)
                 {
                     this.transform.position = to;
                     euler.z = rot_;
@@ -190,7 +176,7 @@ namespace PrePro.Player
 
                 //  経過時間の割合
                 //  開始時間を0，終了時間を1に正規化したときの経過時間の割合から座標を算出
-                float rate = diff / time;
+                float rate = diff / _time;
 
 
                 //  座標
@@ -206,47 +192,20 @@ namespace PrePro.Player
             action();
         }
 
-
-        private IEnumerator GageFall(float time, float fallValue)
-        {
-            //float tmp = guge.fillAmount;
-            //float nokori = guge.fillAmount - fallValue;
-
-            //float startTime = Time.timeSinceLevelLoad;
-
-
-
-            _hpc.Damage(20);
-
-            //_hpc.Heal(30);
-            yield return null;
-            //while (guge.fillAmount != nokori)
-            //{
-            //    float diff = Time.timeSinceLevelLoad - startTime;
-
-            //    if (diff > time)
-            //    {
-            //        guge.fillAmount = nokori;
-            //        break;
-            //    }
-
-            //    float rate = diff / time;
-            //    Debug.Log("= " + rate);
-            //    guge.fillAmount = Mathf.Lerp(0, 1, rate);
-            //    yield return null;
-            //}
-        }
-
+        //スピードUPアイテムの参照
         public void AddSpeed(float _speed)
         {
             _status.speed += _speed;
         }
+
+        //酸素回復アイテムの参照
         public void AddOxygen(float _oxygen)
         {
             _status.oxygen += _oxygen;
             _hpc.Heal((uint)_oxygen);
         }
 
+        //酸素ダメージの参照
         public void DamageOxygen(float oxygen)
         {
             _status.oxygen -= oxygen;

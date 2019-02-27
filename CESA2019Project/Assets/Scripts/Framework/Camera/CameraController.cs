@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Framework;
 
-namespace PrePro.Camera
+namespace Game.Camera
 {
     public class CameraController : SingletonMonoBehaviour<CameraController>
     {

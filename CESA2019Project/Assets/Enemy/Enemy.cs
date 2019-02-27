@@ -4,7 +4,7 @@ using UnityEngine;
 using MethodExpansion;
 
 //  名前空間で区切ること！
-namespace PrePro.Enemy
+namespace Game.Enemy
 {
     public class Enemy : MonoBehaviour
     {
@@ -48,10 +48,10 @@ namespace PrePro.Enemy
 
             //--------------------------------------------
             //  番場 編集
-            PrePro.Player.PlayerController player = null;
+            Game.Player.PlayerController player = null;
             try
             {
-                player = collision.GetComponent<PrePro.Player.PlayerController>();
+                player = collision.GetComponent<Game.Player.PlayerController>();
             }
             catch
             {
