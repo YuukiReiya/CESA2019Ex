@@ -1,6 +1,6 @@
-﻿//<summary>
-//伊藤 陸人
-//</summary>
+﻿///<summary>
+///伊藤 陸人
+///</summary>
 using System.Collections;
 using System.Collections.Generic;
 using PrePro.Player;//プリプロ後にGame.Playerに変更

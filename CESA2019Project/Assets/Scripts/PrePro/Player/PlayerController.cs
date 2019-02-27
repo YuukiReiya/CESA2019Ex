@@ -82,7 +82,7 @@ namespace PrePro.Player
         }
         void OxygenLimtesOver(float value)
         {
-            
+            _hpc.AddMaxValue(value);
         }
 
         private void Move()
@@ -112,7 +112,7 @@ namespace PrePro.Player
 
                 isAttack = true;
                 Debug.Log("攻撃");
-                transform.RotateAround(target.transform.position, _axis, _status.attack  * Time.deltaTime * i );
+                transform.RotateAround(target.transform.position, _axis, _status.attack  * Time.deltaTime * i *_dre);
                 yield return null;
             }
 
