@@ -80,7 +80,7 @@ namespace PrePro.Player
             }
 
         }
-        void OxygenLimtesOver(float value)
+        public void OxygenLimtesOver(float value)
         {
             _hpc.AddMaxValue(value);
         }
