@@ -27,7 +27,7 @@ namespace PrePro.Player
         [SerializeField] AnimationCurve curve;
         [SerializeField] float time = 2;
         private IEnumerator routine;
-        
+        private Game.Pleyer.HPController _hpc;
         float rate;
 
         [SerializeField] Status _status;
@@ -45,7 +45,7 @@ namespace PrePro.Player
             rate = 1;
             //_oxygen = 100f;
             _status.speed = 100;
-            
+            _hpc = FindObjectOfType<Game.Pleyer.HPController>();
             _status.oxygen = 100;
             _slider = GameObject.Find("Slider_O2Gage").GetComponent<Slider>();
             
@@ -68,7 +68,10 @@ namespace PrePro.Player
                Attack();
             }
 
-
+            if (Input.GetKey(KeyCode.A))
+            {
+                _hpc.Heal(20);
+            }
         }
 
         private void Move()
@@ -190,9 +193,11 @@ namespace PrePro.Player
 
             //float startTime = Time.timeSinceLevelLoad;
 
-           
 
-            guge.fillAmount -= fallValue;
+
+            _hpc.Damage(20);
+
+            //_hpc.Heal(30);
             yield return null;
             //while (guge.fillAmount != nokori)
             //{
