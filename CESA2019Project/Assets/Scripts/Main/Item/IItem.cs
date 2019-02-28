@@ -54,6 +54,12 @@ namespace Game.Item
                 return;
             }
 
+            //  ゲームオーバー または ゲームクリアのため処理しない
+            if (Scene.GameSceneController.Instance._state != Scene.GameSceneController.State.PLAY)
+            {
+                return;
+            }
+
             //  Playerを必要としないアイテム
             GetItem();
 

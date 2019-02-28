@@ -20,6 +20,11 @@ namespace Game.Treasure
                 return;
             }
 
+            //  ゲームオーバー または ゲームクリアのため処理しない
+            if (Scene.GameSceneController.Instance._state != Scene.GameSceneController.State.PLAY)
+            {
+                return;
+            }
             //  エラー検知
             try
             {
