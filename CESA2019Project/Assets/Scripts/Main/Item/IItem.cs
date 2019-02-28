@@ -4,7 +4,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Game.Player;//プリプロ後にGame.Playerに変更
+using Game.Player;
 
 /// <summary>
 /// アイテムの基底クラス
