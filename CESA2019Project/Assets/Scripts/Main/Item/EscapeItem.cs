@@ -7,28 +7,42 @@ using Game.Player;
 using UnityEngine;
 
 /// <summary>
-/// とったら任意の場所に瞬間移動するアイテム
-/// (一番最初の場所に設定することでエスケープアイテムとして機能させる)
+/// 初期位置の場所に瞬間移動するアイテム
 /// </summary>
 namespace Game.Item
 {
     public class EscapeItem : IItem
     {
-        [SerializeField] Vector3 escapePos;
+        GameObject target;
+        Vector3 pos;
+        Quaternion rot;
+        Vector3 scale;
+
 
         private void Reset()
         {
-            escapePos =FindObjectOfType<PlayerController>().transform.position;
 
         }
+
+        private void Start()
+        {
+            PlayerController player = FindObjectOfType<PlayerController>();
+            target = player.target;
+            pos = player.transform.position;
+            rot = player.transform.rotation;
+            scale = player.transform.localScale;
+        }
+
 
         protected override void GetItemSelf(PlayerController player)
         {
             base.GetItemSelf(player);
 
             //  プレイヤーの位置を設定座標へ
-            player.gameObject.transform.position = escapePos;
-
+            player.transform.position = pos;
+            player.transform.rotation = rot;
+            player.transform.localScale = scale;
+            player.target = target;
             Destroy(this.gameObject);
         }
     }

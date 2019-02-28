@@ -20,7 +20,7 @@ namespace Game.Player
 
         [SerializeField] Sprite[] idle;
         [SerializeField] Sprite[] run;
-        [SerializeField] GameObject target;//移動中心のオブジェクト
+        public GameObject target;//移動中心のオブジェクト
         [SerializeField] AnimationCurve curve;
         [SerializeField] float _time = 1;
         private IEnumerator routine;
