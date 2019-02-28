@@ -24,7 +24,7 @@ namespace Game.Pleyer
         // Start is called before the first frame update
         void Start()
         {
-            _hp = _UI.value;
+            _hp = _UI.value; 
         }
 
         // Update is called once per frame

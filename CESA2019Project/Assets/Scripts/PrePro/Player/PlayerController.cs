@@ -93,6 +93,8 @@ namespace Game.Player
             this.transform.RotateAround(target.transform.position, _axis, Mathf.Abs(_input) * _status.speed * Time.deltaTime*_dre);
         }
 
+
+
         //攻撃関数
         private void Attack()
         {
@@ -122,7 +124,8 @@ namespace Game.Player
 
 
 
-        public void JetAction(GameObject toArea, GameObject target)
+        public void JetAction(GameObject toArea, GameObject target ,float rot)
+    
         {
             
             //  早期リターン
@@ -133,7 +136,7 @@ namespace Game.Player
 
             //  メソッド呼び出し
             routine = InterplanetaryMovement(
-                toArea,
+                toArea,rot,
                 () =>
             {
                 routine = null;
@@ -146,10 +149,11 @@ namespace Game.Player
            
             DamageOxygen(20);
 
+
         }
 
         //  惑星間移動
-        private IEnumerator InterplanetaryMovement(GameObject toArea, Action action = null)
+        private IEnumerator InterplanetaryMovement(GameObject toArea, float toRot,Action action = null)
         {
             //  移動元
             Vector2 from = this.transform.position;
@@ -158,9 +162,9 @@ namespace Game.Player
             Vector2 to = toArea.transform.position;
 
             //  回転
-            float rot = this.transform.rotation.eulerAngles.z;
-            float rot_ = rot + 180;
-
+            float fromRot = this.transform.rotation.eulerAngles.z;//回転元
+            
+            
 
             //  開始時間
             float startTime = Time.timeSinceLevelLoad;
@@ -178,7 +182,7 @@ namespace Game.Player
                 if (diff > _time)
                 {
                     this.transform.position = to;
-                    euler.z = rot_;
+                    euler.z = toRot;
                     this.transform.rotation = Quaternion.Euler(euler);
                     break;
                 }
@@ -192,7 +196,7 @@ namespace Game.Player
                 transform.position = Vector2.Lerp(from, to, curve.Evaluate(rate));
 
                 //  回転
-                euler.z = Mathf.Lerp(rot, rot_, curve.Evaluate(rate));
+                euler.z = Mathf.Lerp(fromRot, toRot, curve.Evaluate(rate));
                 transform.rotation = Quaternion.Euler(euler);
                 yield return null;
             }
@@ -220,6 +224,16 @@ namespace Game.Player
             _status.oxygen -= oxygen;
             _hpc.Damage((uint)oxygen);
         }
+
+        public void EcoOxtgen()
+        {
+
+        }
+
+        //public void AddMirror(int mirorr)
+        //{
+        //    _
+        //}
             
     }
 }

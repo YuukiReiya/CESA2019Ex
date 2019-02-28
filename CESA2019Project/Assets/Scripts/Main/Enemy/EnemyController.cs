@@ -25,6 +25,7 @@ namespace Game.Enemy
             foreach (var it in enemys)
             {
                 if (it == null) { continue; }
+                Debug.Log("ko");
                 it.Stun();
             }
         }

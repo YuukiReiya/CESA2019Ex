@@ -20,6 +20,8 @@ namespace Game.Planet
         // 移動先のカメラ位置
         public GameObject nextCameraPos;
 
+        [SerializeField] float rot;
+        
         // Start is called before the first frame update
         void Start()
         {
@@ -48,7 +50,7 @@ namespace Game.Planet
             {
                 //  接触したのはプレイヤーなのでGetComponentで取得
                 Player.PlayerController player = collision.GetComponent<Player.PlayerController>();
-                player.JetAction(nextArea, nextPlanet);
+                player.JetAction(nextArea, nextPlanet, rot);
             }
             catch
             {

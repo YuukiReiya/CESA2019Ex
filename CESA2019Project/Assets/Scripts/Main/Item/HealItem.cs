@@ -5,23 +5,27 @@ using System.Collections;
 using System.Collections.Generic;
 using Game.Player;//プリプロ後にGame.Playerに変更
 using UnityEngine;
-public class HealItem : Game.Item.IItem
+
+namespace Game.Item
 {
-    float _healOxygen = 30;//酸素の回復値
-    
-    protected override void GetItemSelf(PlayerController player)
+    public class HealItem : Game.Item.IItem
     {
-        base.GetItemSelf(player);
+        float _healOxygen = 30;//酸素の回復値
 
-        //酸素を回復
-        player.AddOxygen(_healOxygen);
-        
+        protected override void GetItemSelf(PlayerController player)
+        {
+            base.GetItemSelf(player);
 
-        Debug.Log("回復！");
-        //オブジェクトの削除
-        Destroy(gameObject);
+            //酸素を回復
+            player.AddOxygen(_healOxygen);
+
+
+            Debug.Log("回復！");
+            //オブジェクトの削除
+            Destroy(gameObject);
+        }
+
+
+
     }
-
-    
-
 }
