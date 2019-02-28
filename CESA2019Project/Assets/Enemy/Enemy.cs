@@ -94,6 +94,14 @@ namespace Game.Enemy
             Vector3 axis = transform.TransformDirection(new Vector3(0, 0, 1));
             transform.RotateAround(target.transform.position, axis, _angle * x * Time.deltaTime);
 
+            //--------------------------------------------
+            //  番場 編集
+            //  ゲームオーバー または ゲームクリアのため処理しない
+            if (Scene.GameSceneController.Instance._state != Scene.GameSceneController.State.PLAY)
+            {
+                return;
+            }
+            //--------------------------------------------
             if (Input.GetKey(KeyCode.Space))
             {
                 //Space押したら敵が消える
