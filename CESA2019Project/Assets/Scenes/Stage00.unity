@@ -2324,7 +2324,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1691817721}
-  m_RootOrder: 34
+  m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &274879493
 MonoBehaviour:
@@ -2703,7 +2703,7 @@ MonoBehaviour:
   nextArea: {fileID: 1600658848}
   nextPlanet: {fileID: 336883317}
   nextCameraPos: {fileID: 0}
-  rot: 0
+  rot: 90
 --- !u!58 &320113215
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3297,7 +3297,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1691817721}
-  m_RootOrder: 31
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &367526311
 MonoBehaviour:
@@ -3972,7 +3972,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1691817721}
-  m_RootOrder: 38
+  m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &475121213
 MonoBehaviour:
@@ -4327,7 +4327,7 @@ PrefabInstance:
     - target: {fileID: 5198803865404428335, guid: 573162034529e384295caf157363fa14,
         type: 3}
       propertyPath: _stunTime
-      value: 120
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 5198803865404428333, guid: 573162034529e384295caf157363fa14,
         type: 3}
@@ -5004,7 +5004,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1691817721}
-  m_RootOrder: 35
+  m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &571959520
 MonoBehaviour:
@@ -5289,7 +5289,7 @@ MonoBehaviour:
   nextArea: {fileID: 1410060077}
   nextPlanet: {fileID: 432284347}
   nextCameraPos: {fileID: 0}
-  rot: 0
+  rot: -90
 --- !u!1 &585971071
 GameObject:
   m_ObjectHideFlags: 0
@@ -5718,7 +5718,7 @@ PrefabInstance:
     - target: {fileID: 5198803865404428335, guid: 573162034529e384295caf157363fa14,
         type: 3}
       propertyPath: _stunTime
-      value: 120
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 5198803865404428333, guid: 573162034529e384295caf157363fa14,
         type: 3}
@@ -6203,7 +6203,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1691817721}
-  m_RootOrder: 37
+  m_RootOrder: 38
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &745919267
 MonoBehaviour:
@@ -6220,7 +6220,7 @@ MonoBehaviour:
   nextArea: {fileID: 475121211}
   nextPlanet: {fileID: 1193930258}
   nextCameraPos: {fileID: 0}
-  rot: 0
+  rot: 90
 --- !u!58 &745919268
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6393,7 +6393,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1691817721}
-  m_RootOrder: 36
+  m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &763537159
 MonoBehaviour:
@@ -6651,7 +6651,7 @@ PrefabInstance:
     - target: {fileID: 5198803865404428335, guid: 573162034529e384295caf157363fa14,
         type: 3}
       propertyPath: _stunTime
-      value: 120
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 5198803865404428333, guid: 573162034529e384295caf157363fa14,
         type: 3}
@@ -10156,7 +10156,7 @@ MonoBehaviour:
   nextArea: {fileID: 375220879}
   nextPlanet: {fileID: 1189508492}
   nextCameraPos: {fileID: 0}
-  rot: 0
+  rot: 90
 --- !u!58 &1213878997
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10628,7 +10628,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1691817721}
-  m_RootOrder: 32
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1246732497
 MonoBehaviour:
@@ -10979,7 +10979,7 @@ MonoBehaviour:
   nextArea: {fileID: 284051475}
   nextPlanet: {fileID: 273509717}
   nextCameraPos: {fileID: 0}
-  rot: 225
+  rot: 0
 --- !u!1 &1283588570
 GameObject:
   m_ObjectHideFlags: 0
@@ -12312,7 +12312,7 @@ MonoBehaviour:
   nextArea: {fileID: 578085834}
   nextPlanet: {fileID: 273509717}
   nextCameraPos: {fileID: 0}
-  rot: 0
+  rot: 90
 --- !u!1 &1415635713
 GameObject:
   m_ObjectHideFlags: 0
@@ -13625,7 +13625,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1691817721}
-  m_RootOrder: 39
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1600658850
 MonoBehaviour:
@@ -13642,7 +13642,7 @@ MonoBehaviour:
   nextArea: {fileID: 320113212}
   nextPlanet: {fileID: 394577081}
   nextCameraPos: {fileID: 0}
-  rot: 0
+  rot: -90
 --- !u!58 &1600658851
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -13963,7 +13963,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1691817721}
-  m_RootOrder: 33
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1675666358
 MonoBehaviour:
@@ -14140,6 +14140,7 @@ Transform:
   - {fileID: 1763814157}
   - {fileID: 716223200}
   - {fileID: 320113213}
+  - {fileID: 1600658849}
   - {fileID: 367526310}
   - {fileID: 1246732496}
   - {fileID: 1675666357}
@@ -14148,7 +14149,6 @@ Transform:
   - {fileID: 763537158}
   - {fileID: 745919266}
   - {fileID: 475121212}
-  - {fileID: 1600658849}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16298,7 +16298,7 @@ MonoBehaviour:
   nextArea: {fileID: 2016795163}
   nextPlanet: {fileID: 1609140713}
   nextCameraPos: {fileID: 2016795163}
-  rot: 0
+  rot: 90
 --- !u!58 &1901004652
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -16978,7 +16978,7 @@ MonoBehaviour:
   nextArea: {fileID: 1901004649}
   nextPlanet: {fileID: 1961138846}
   nextCameraPos: {fileID: 0}
-  rot: 0
+  rot: -90
 --- !u!58 &2016795166
 CircleCollider2D:
   m_ObjectHideFlags: 0
