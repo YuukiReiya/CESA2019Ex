@@ -1,16 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MyInput;
 
 public class Cursor : MonoBehaviour
 {
     bool flg;
     bool flgs;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -46,6 +42,15 @@ public class Cursor : MonoBehaviour
         {
             flgs = false;
         }
-
+        if (MyInputManager.AllController.A && localPos.y < -122.6f)
+        {
+       #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #elif UNITY_WEBPLAYER
+		Application.OpenURL("http://www.yahoo.co.jp/");
+       #else
+		Application.Quit();
+      #endif
+        }
     }
 }
