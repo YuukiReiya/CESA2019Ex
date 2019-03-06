@@ -14,16 +14,25 @@ namespace Game.Pleyer
     public class HPController : MonoBehaviour
     {
         [SerializeField] Slider _UI;
-        [SerializeField, Range(0.01f, 1)] float _interval = 0.01f;
+        [SerializeField, Range(0.01f, 1)] float _interval = 0.5f;
+        [SerializeField] float offset;
+        [SerializeField] RectTransform _backGround;
+        [SerializeField] RectTransform _fillArea;
         float _hp;
+        const float BASE_HP = 100;  // 基準となるHP
 
         void Reset()
         {
+            _UI = GetComponent<Slider>();
+            var childs = this.GetComponentsInChildren<RectTransform>();
+            _backGround = childs[1];
+            _fillArea   = childs[2];
         }
 
         // Start is called before the first frame update
         void Start()
         {
+            _UI.maxValue = BASE_HP;
             _hp = _UI.value; 
         }
 
@@ -54,7 +63,7 @@ namespace Game.Pleyer
         }
 
         /// <summary>
-        /// 
+        /// HPの書き換え
         /// </summary>
         /// <param name="hp"></param>
         public void Overwrite(uint hp)
@@ -69,6 +78,18 @@ namespace Game.Pleyer
         public void AddMaxValue(float value)
         {
             _UI.maxValue += value;
+
+            //  valueの範囲(0～100)を100で除算し割合を求める
+            float rate = value / BASE_HP;
+            Vector3 scale = _backGround.localScale;
+            scale.x += rate;
+
+            //  ゲージの長さ変更
+            _backGround.localScale = scale;
+            _fillArea.localScale = scale;
+
+            //  上昇分の回復
+            Heal((uint)value);
         }
 
         /// <summary>
