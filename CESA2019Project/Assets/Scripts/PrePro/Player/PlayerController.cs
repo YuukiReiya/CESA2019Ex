@@ -33,14 +33,17 @@ namespace Game.Player
 
         [System.NonSerialized] public bool isAttack;//攻撃フラグをにする
         bool _isMove;
-        float _direction;//Playerの方向とる
-        float _directionRight;
-        float _directionLeft;
-        float _directionB;
+        float _directionMove;//Playerの方向とる
+        float _directionRight;//RB
+        float _directionLeft;//LB
+        float _directionButton;//LB、RBでPlayerの方向をとる
+        float _directionAttack;//攻撃の方向
 
+        int _jetCount;//惑星間の移動回数
 
         public float _damage = 20f;//ダメ―ジ量
         public float _attack = 10f;//攻撃消費量
+        public float _jet = 10f;//惑星間移動の消費量
 
         public float HP { get { return _status.oxygen; } }
         
@@ -55,10 +58,13 @@ namespace Game.Player
             _hpc = FindObjectOfType<Game.Pleyer.HPController>();
             _status.oxygen = 100;
 
-            _direction = -1;
+            _directionMove = -1;
             _directionRight = -1;
             _directionLeft = 1;
-            _directionB = 0;
+            _directionButton = 0;
+            _directionAttack = -1;
+
+            _jetCount = 0;
         }
 
         // Update is called once per frame
@@ -93,43 +99,47 @@ namespace Game.Player
 
             //Lステックで移動
             float _input = MyInputManager.AllController.LStick.x;
-            //---------------------------------------------------------------------
+
+            //--LR移動-------------------------------------------------------------------------------------------------------------
             //移動をRB,LB
             //RBで右回転
             bool _inputRB = MyInputManager.AllController.RT_Hold;
             //LBで左回転
             bool _inputLB = MyInputManager.AllController.LT_Hold;
-
-
-            //----------------------------------------------------------------------
-
             if (_inputRB)
             {
-                _directionB = _directionRight;
+                _directionButton = _directionRight;
+                _directionAttack = _directionRight;
             }
             else if (_inputLB)
             {
-                _directionB = _directionLeft;
+                _directionButton = _directionLeft;
+                _directionAttack = _directionLeft;
             }
             else
             {
-                _directionB = 0;
+                _directionButton = 0;
             }
+            
+            //LR
+            this.transform.RotateAround(target.transform.position, _axis, _status.speed * Time.deltaTime * _directionButton);
+            //----------------------------------------------------------------------------------------------------------------
+
+            
 
 
 
             if (_input > 0 )
             {
-                _direction = -1;
+                _directionMove = -1;
             }
             else if (_input < 0)
             {
-                _direction = 1;
+                _directionMove = 1;
             }
             //ステック
-            this.transform.RotateAround(target.transform.position, _axis, Mathf.Abs(_input) * _status.speed * Time.deltaTime * _direction);
-            //LR
-            this.transform.RotateAround(target.transform.position, _axis, _status.speed * Time.deltaTime * _directionB);
+            this.transform.RotateAround(target.transform.position, _axis, Mathf.Abs(_input) * _status.speed * Time.deltaTime * _directionMove);
+           
         }
 
 
@@ -154,7 +164,7 @@ namespace Game.Player
                 isAttack = true;
                 Debug.Log("攻撃");
                 
-                transform.RotateAround(target.transform.position, _axis, _status.attack  * Time.deltaTime * i * _direction);
+                transform.RotateAround(target.transform.position, _axis, _status.attack  * Time.deltaTime * i * _directionAttack);
                 yield return null;
             }
 
@@ -193,7 +203,7 @@ namespace Game.Player
             //}
             //else if ()
             //{
-                DamageOxygen(_damage);
+                DamageOxygen(_jet);
             //}
             
 
@@ -272,10 +282,11 @@ namespace Game.Player
             _status.oxygen -= oxygen;
             _hpc.Damage((uint)oxygen);
         }
-
-       
-
         
-            
+        //惑星間移動回数のカウント
+        public int GetJetCount()
+        {
+            return _jetCount;
+        }
     }
 }
