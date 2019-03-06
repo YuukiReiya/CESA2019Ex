@@ -21,12 +21,23 @@ namespace Game.Camera
 
         }
 
+        /// <summary>
+        /// 移動先へ補完しながら移動
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="time"></param>
         public void Move(GameObject target,float time)
         {
             IEnumerator routine = MoveToTarget(target.transform.position, time);
             StartCoroutine(routine);
         }
 
+        /// <summary>
+        /// 移動コルーチン
+        /// </summary>
+        /// <param name="to"></param>
+        /// <param name="time"></param>
+        /// <returns></returns>
         IEnumerator MoveToTarget(Vector3 to,float time)
         {
             //  移動元
@@ -58,5 +69,17 @@ namespace Game.Camera
             }
         }
 
+        public void Shake(float time,float magnitude)
+        {
+            //  値の保存
+            Vector3 pos = this.transform.position;
+
+            //  経過時間
+            float elapsed = 0f;
+
+            while (elapsed < time)
+            {
+                float x = pos.x + Random.Range(-1f, 1f) * magnitude;
+            }
     }
 }

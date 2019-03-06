@@ -20,6 +20,7 @@ namespace Game.Planet
         // 移動先のカメラ位置
         public GameObject nextCameraPos;
 
+        //  移動先到着後の回転値
         [SerializeField] float rot;
         
         // Start is called before the first frame update
@@ -44,12 +45,12 @@ namespace Game.Planet
                 return;
             }
 
-            
+            Player.PlayerController player = null;
             //  エラー検知
             try
             {
                 //  接触したのはプレイヤーなのでGetComponentで取得
-                Player.PlayerController player = collision.GetComponent<Player.PlayerController>();
+                player = collision.GetComponent<Player.PlayerController>();
                 player.JetAction(nextArea, nextPlanet, rot);
             }
             catch
@@ -57,6 +58,10 @@ namespace Game.Planet
                 //  例外処理
                 Debug.LogError("PlayerContrllerのGetComponentで例外発生");
             }
+
+            //  カメラの移動先が設定されていれば移動させる
+            if (!nextCameraPos) { return; }
+            Camera.CameraController.Instance.Move(nextCameraPos, player.GetJetTime());
         }
     }
 }
