@@ -40,11 +40,11 @@ namespace Game.Planet
             //  レイヤーの当たり判定
             if (PLAYER_LAYER != collision.gameObject.layer)
             {
-                //Player以外のレイヤーの当たり判定をとらない
+                // Player以外のレイヤーの当たり判定をとらない
                 return;
             }
 
-            Debug.Log("移動可能");
+            
             //  エラー検知
             try
             {

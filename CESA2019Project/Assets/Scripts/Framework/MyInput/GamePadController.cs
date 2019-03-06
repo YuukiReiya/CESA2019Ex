@@ -166,12 +166,12 @@ namespace GamePadInput
             get { return Hold_Button(Controller, GamePad.Button.BACK); }
         }
 
-        public bool LB_Hold
+        public bool LT_Hold
         {
             get { return Hold_Button(Controller, GamePad.Button.LB); }
         }
 
-        public bool RB_Hold
+        public bool RT_Hold
         {
             get { return Hold_Button(Controller, GamePad.Button.RB); }
         }

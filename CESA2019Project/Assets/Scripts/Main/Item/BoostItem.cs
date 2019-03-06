@@ -6,7 +6,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Player;
 
-public class BoostItem : Game.Item.IItem
+namespace Game.Item
+{
+    public class BoostItem : Game.Item.IItem
 {
     [SerializeField] float _upJetSpeed = 50f;
     [SerializeField] int _time = 10;
@@ -14,24 +16,27 @@ public class BoostItem : Game.Item.IItem
     {
 
         //スピードアップ
-        player.StartCoroutine(Timeover(player));
+        player.StartCoroutine(TimeOver(player));
 
-        Debug.Log("ブースト！");
+        
         //オブジェクトを削除
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 
-    private IEnumerator Timeover(PlayerController player)
+    private IEnumerator TimeOver(PlayerController player)
     {
         player.AddSpeed(_upJetSpeed);
         for (int i = 0; i < _time*60; i++)
         {
-        Debug.Log("減速");
+        
         yield return null;
 
         }
         player.AddSpeed(-_upJetSpeed);
-        Debug.Log("減速");
+        
 
     }
+}
+
+
 }

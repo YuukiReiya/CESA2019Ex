@@ -3,7 +3,7 @@
 ///</summary>
 using System.Collections;
 using System.Collections.Generic;
-using Game.Player;//プリプロ後にGame.Playerに変更
+using Game.Player;
 using UnityEngine;
 
 namespace Game.Item
@@ -20,9 +20,9 @@ namespace Game.Item
             player.AddOxygen(_healOxygen);
 
 
-            Debug.Log("回復！");
+            
             //オブジェクトの削除
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
 
 

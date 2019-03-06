@@ -33,7 +33,14 @@ namespace Game.Player
 
         [System.NonSerialized] public bool isAttack;//攻撃フラグをにする
         bool _isMove;
-        float _dre;//Playerの方向とる
+        float _direction;//Playerの方向とる
+        float _directionRight;
+        float _directionLeft;
+        float _directionB;
+
+
+        public float _damage = 20f;//ダメ―ジ量
+        public float _attack = 10f;//攻撃消費量
 
         public float HP { get { return _status.oxygen; } }
         
@@ -48,9 +55,10 @@ namespace Game.Player
             _hpc = FindObjectOfType<Game.Pleyer.HPController>();
             _status.oxygen = 100;
 
-            _dre = -1;
-
-
+            _direction = -1;
+            _directionRight = -1;
+            _directionLeft = 1;
+            _directionB = 0;
         }
 
         // Update is called once per frame
@@ -81,16 +89,47 @@ namespace Game.Player
         private void Move()
         {
             Vector3 _axis = this.transform.TransformDirection(new Vector3(0, 0, 1));
+
+
+            //Lステックで移動
             float _input = MyInputManager.AllController.LStick.x;
-            if (_input>0)
+            //---------------------------------------------------------------------
+            //移動をRB,LB
+            //RBで右回転
+            bool _inputRB = MyInputManager.AllController.RT_Hold;
+            //LBで左回転
+            bool _inputLB = MyInputManager.AllController.LT_Hold;
+
+
+            //----------------------------------------------------------------------
+
+            if (_inputRB)
             {
-                _dre = -1;
+                _directionB = _directionRight;
             }
-            else if (_input<0)
+            else if (_inputLB)
             {
-                _dre = 1;
+                _directionB = _directionLeft;
             }
-            this.transform.RotateAround(target.transform.position, _axis, Mathf.Abs(_input) * _status.speed * Time.deltaTime*_dre);
+            else
+            {
+                _directionB = 0;
+            }
+
+
+
+            if (_input > 0 )
+            {
+                _direction = -1;
+            }
+            else if (_input < 0)
+            {
+                _direction = 1;
+            }
+            //ステック
+            this.transform.RotateAround(target.transform.position, _axis, Mathf.Abs(_input) * _status.speed * Time.deltaTime * _direction);
+            //LR
+            this.transform.RotateAround(target.transform.position, _axis, _status.speed * Time.deltaTime * _directionB);
         }
 
 
@@ -99,7 +138,7 @@ namespace Game.Player
         private void Attack()
         {
             
-            DamageOxygen(10);
+            DamageOxygen(_attack);
             StartCoroutine("AttackMove");
         }
 
@@ -114,7 +153,8 @@ namespace Game.Player
 
                 isAttack = true;
                 Debug.Log("攻撃");
-                transform.RotateAround(target.transform.position, _axis, _status.attack  * Time.deltaTime * i * _dre);
+                
+                transform.RotateAround(target.transform.position, _axis, _status.attack  * Time.deltaTime * i * _direction);
                 yield return null;
             }
 
@@ -146,8 +186,16 @@ namespace Game.Player
             );
             rate -= 0.15f;
             StartCoroutine(routine);
-           
-            DamageOxygen(20);
+
+            //if ()
+            //{
+            //    DamageOxygen(10);
+            //}
+            //else if ()
+            //{
+                DamageOxygen(_damage);
+            //}
+            
 
 
         }
@@ -225,15 +273,9 @@ namespace Game.Player
             _hpc.Damage((uint)oxygen);
         }
 
-        public void EcoOxtgen()
-        {
+       
 
-        }
-
-        //public void AddMirror(int mirorr)
-        //{
-        //    _
-        //}
+        
             
     }
 }
