@@ -65,6 +65,7 @@ namespace Game.Player
             _directionAttack = -1;
 
             _jetCount = 0;
+            JetTime = 1;
         }
 
         // Update is called once per frame
@@ -290,9 +291,5 @@ namespace Game.Player
         }
 
         
-        public float GetJetTime()
-        {
-            return JetTime;
-        }
     }
 }

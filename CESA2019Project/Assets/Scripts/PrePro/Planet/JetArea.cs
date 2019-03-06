@@ -61,7 +61,7 @@ namespace Game.Planet
 
             //  カメラの移動先が設定されていれば移動させる
             if (!nextCameraPos) { return; }
-            Camera.CameraController.Instance.Move(nextCameraPos, player.GetJetTime());
+            Camera.CameraController.Instance.Move(nextCameraPos, player.JetTime);
         }
     }
 }

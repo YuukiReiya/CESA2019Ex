@@ -26,7 +26,7 @@ namespace Game.Camera
         /// </summary>
         /// <param name="target"></param>
         /// <param name="time"></param>
-        public void Move(GameObject target,float time)
+        public void Move(GameObject target, float time)
         {
             IEnumerator routine = MoveToTarget(target.transform.position, time);
             StartCoroutine(routine);
@@ -38,7 +38,7 @@ namespace Game.Camera
         /// <param name="to"></param>
         /// <param name="time"></param>
         /// <returns></returns>
-        IEnumerator MoveToTarget(Vector3 to,float time)
+        IEnumerator MoveToTarget(Vector3 to, float time)
         {
             //  移動元
             Vector3 from = camera.transform.position;
@@ -47,7 +47,7 @@ namespace Game.Camera
             float startTime = Time.timeSinceLevelLoad;
 
             //  ループ
-            while(from!=to)
+            while (from != to)
             {
                 //  経過時間
                 float diff = Time.timeSinceLevelLoad - startTime;
@@ -69,7 +69,7 @@ namespace Game.Camera
             }
         }
 
-        public void Shake(float time,float magnitude)
+        public void Shake(float time, float magnitude)
         {
             //  値の保存
             Vector3 pos = this.transform.position;
@@ -81,5 +81,6 @@ namespace Game.Camera
             {
                 float x = pos.x + Random.Range(-1f, 1f) * magnitude;
             }
+        }
     }
 }
