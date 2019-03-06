@@ -63,7 +63,7 @@ namespace Game.Player
             _directionLeft = 1;
             _directionButton = 0;
             _directionAttack = -1;
-
+            
             _jetCount = 0;
             JetTime = 1;
         }
@@ -85,8 +85,7 @@ namespace Game.Player
                //攻撃
                Attack();
             }
-
-            //Debug.Log(HP);
+            
         }
         public void OxygenLimtesOver(float value)
         {
@@ -163,7 +162,6 @@ namespace Game.Player
             {
 
                 isAttack = true;
-                Debug.Log("攻撃");
                 
                 transform.RotateAround(target.transform.position, _axis, _status.attack  * Time.deltaTime * i * _directionAttack);
                 yield return null;
