@@ -46,7 +46,7 @@ namespace Game.Player
         public float _jet = 10f;//惑星間移動の消費量
 
         public float HP { get { return _status.oxygen; } }
-        
+        public float JetTime { get; private set; }
 
         // Start is called before the first frame update
         void Start()
@@ -287,6 +287,12 @@ namespace Game.Player
         public int GetJetCount()
         {
             return _jetCount;
+        }
+
+        
+        public float GetJetTime()
+        {
+            return JetTime;
         }
     }
 }
