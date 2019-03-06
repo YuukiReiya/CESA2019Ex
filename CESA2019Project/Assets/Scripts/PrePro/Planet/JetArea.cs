@@ -32,7 +32,6 @@ namespace Game.Planet
         // Update is called once per frame
         void Update()
         {
-
         }
 
         //  プレイヤーがJetAreaに触れているときにボタン入力がされたときにPlayerのアクションを呼び出す
