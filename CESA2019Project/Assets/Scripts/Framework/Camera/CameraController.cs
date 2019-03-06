@@ -26,7 +26,7 @@ namespace Game.Camera
         /// </summary>
         /// <param name="target"></param>
         /// <param name="time"></param>
-        public void Move(GameObject target,float time)
+        public void Move(GameObject target, float time)
         {
             IEnumerator routine = MoveToTarget(target.transform.position, time);
             StartCoroutine(routine);
@@ -38,7 +38,7 @@ namespace Game.Camera
         /// <param name="to"></param>
         /// <param name="time"></param>
         /// <returns></returns>
-        IEnumerator MoveToTarget(Vector3 to,float time)
+        IEnumerator MoveToTarget(Vector3 to, float time)
         {
             //  移動元
             Vector3 from = camera.transform.position;
@@ -47,7 +47,7 @@ namespace Game.Camera
             float startTime = Time.timeSinceLevelLoad;
 
             //  ループ
-            while(from!=to)
+            while (from != to)
             {
                 //  経過時間
                 float diff = Time.timeSinceLevelLoad - startTime;
@@ -69,17 +69,51 @@ namespace Game.Camera
             }
         }
 
-        public void Shake(float time,float magnitude)
+        /// <summary>
+        /// 画面を揺らす
+        /// </summary>
+        /// <param name="time"></param>
+        /// <param name="magnitude"></param>
+        public void Shake(float time, float magnitude)
+        {
+            StartCoroutine(ShakeCoroutine(time, magnitude));
+        }
+
+        /// <summary>
+        /// 画面を揺らすコルーチン
+        /// </summary>
+        /// <param name="time"></param>
+        /// <param name="magnitude"></param>
+        /// <returns></returns>
+        IEnumerator ShakeCoroutine(float time, float magnitude)
         {
             //  値の保存
             Vector3 pos = this.transform.position;
 
-            //  経過時間
-            float elapsed = 0f;
+            //  開始時間
+            float startTime = Time.timeSinceLevelLoad;
 
-            while (elapsed < time)
+            while (true)
             {
                 float x = pos.x + Random.Range(-1f, 1f) * magnitude;
+                float y = pos.y + Random.Range(-1f, 1f) * magnitude;
+
+                //  座標代入
+                this.transform.position = new Vector3(x, y, pos.z);
+
+                //  経過時間
+                float diff = Time.timeSinceLevelLoad - startTime;
+
+                //  指定時間
+                if (diff > time)
+                {
+                    break;
+                }
+                yield return null;
             }
+
+            //  座標
+            this.transform.position = pos;
+        }
     }
 }
