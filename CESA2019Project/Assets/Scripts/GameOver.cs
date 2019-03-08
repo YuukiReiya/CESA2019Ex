@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
-    [SerializeField] GameObject Gemeover;
-    [SerializeField] int _item;
-    // Start is called before the first frame update
+    [SerializeField] GameObject Gameover;
+    [SerializeField] GameObject Gameovers;
+
     void Start()
     {
-        Gemeover.SetActive(false);
+        Gameover.SetActive(false);
+        Gameovers.SetActive(false);
     }
-    void Update()
+   
+    
+    public void over()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Gemeover.SetActive(true);
-        }
+            Gameover.SetActive(true);
+            Gameovers.SetActive(true);
     }
 }
