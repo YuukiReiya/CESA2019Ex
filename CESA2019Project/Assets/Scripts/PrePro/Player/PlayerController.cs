@@ -41,9 +41,9 @@ namespace Game.Player
 
         int _jetCount;//惑星間の移動回数
 
-        public float _damage = 20f;//ダメ―ジ量
-        public float _attack = 10f;//攻撃消費量
-        public float _jet = 10f;//惑星間移動の消費量
+        public float _damage;//ダメ―ジ量
+        public float _attack;//攻撃消費量
+        public float _jet;//惑星間移動の消費量
 
         public float HP { get { return _status.oxygen; } }
         public float JetTime { get; private set; }
@@ -55,8 +55,8 @@ namespace Game.Player
             isAttack = false; 
             rate = 1;
             _status.speed = 100;
-            _hpc = FindObjectOfType<Game.Pleyer.HPController>();
             _status.oxygen = 100;
+            _hpc = FindObjectOfType<Game.Pleyer.HPController>();
 
             _directionMove = -1;
             _directionRight = -1;
@@ -66,6 +66,10 @@ namespace Game.Player
             
             _jetCount = 0;
             JetTime = 1;
+
+            _damage = 20f;
+            _attack = 10f;
+            _jet = 10f;
         }
 
         // Update is called once per frame
@@ -279,6 +283,7 @@ namespace Game.Player
         public void DamageOxygen(float oxygen)
         {
             _status.oxygen -= oxygen;
+            
             _hpc.Damage((uint)oxygen);
         }
         
@@ -288,6 +293,10 @@ namespace Game.Player
             return _jetCount;
         }
 
-        
+        //
+        //public void EcoOxygen(float eco)
+        //{
+        //    _jet = eco;
+        //}
     }
 }

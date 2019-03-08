@@ -6,22 +6,45 @@ using Game.Player;
 public class EcoItem : Game.Item.IItem
 {
     [SerializeField]float _ecoOxygen = 5f;
-    [SerializeField] int _time;
+    [SerializeField]float _time = 0;
+    [SerializeField] PlayerController player;
     // Start is called before the first frame update
+
+    private void Start()
+    {
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
+    }
+    private void Update()
+    {
+        _time += Time.deltaTime;
+        
+    }
     protected override void GetItemSelf(PlayerController player)
     {
         //酸素消費減
         StartCoroutine(TimeOver(player));
         
         Destroy(this.gameObject);
+
+        //5秒後に値を戻す
+        if (_time >= 5.0f)
+        {
+            func();
+        }
     }
 
     private IEnumerator TimeOver(PlayerController player)
     {
         player._jet = _ecoOxygen;
-        yield return new WaitForSeconds(_time);
-
-        player._jet = 10f;
+        for(int i = 0; i < _time * 60; i++)
+        {
+            yield return null;
+        }
         
+       
+    }
+    private void func()
+    {
+        player._jet = 10f;
     }
 }

@@ -68,10 +68,11 @@ namespace Game.Enemy
             {
                 //  酸素ゲージ減少
                 player.DamageOxygen(20);
+                Camera.CameraController.Instance.Shake(0.1f, 0.1f);
             }
             //--------------------------------------------
 
-            //x = 0;
+          
 
         }
 
