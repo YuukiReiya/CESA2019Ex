@@ -41,9 +41,9 @@ namespace Game.Player
 
         int _jetCount;//惑星間の移動回数
 
-        public float _damage = 20f;//ダメ―ジ量
-        public float _attack = 10f;//攻撃消費量
-        public float _jet = 10f;//惑星間移動の消費量
+        public float _damage;//ダメ―ジ量
+        public float _attack;//攻撃消費量
+        public float _jet;//惑星間移動の消費量
 
         public float HP { get { return _status.oxygen; } }
         public float JetTime { get; private set; }
@@ -55,17 +55,21 @@ namespace Game.Player
             isAttack = false; 
             rate = 1;
             _status.speed = 100;
-            _hpc = FindObjectOfType<Game.Pleyer.HPController>();
             _status.oxygen = 100;
+            _hpc = FindObjectOfType<Game.Pleyer.HPController>();
 
             _directionMove = -1;
             _directionRight = -1;
             _directionLeft = 1;
             _directionButton = 0;
             _directionAttack = -1;
-
+            
             _jetCount = 0;
             JetTime = 1;
+
+            _damage = 20f;
+            _attack = 10f;
+            _jet = 10f;
         }
 
         // Update is called once per frame
@@ -85,8 +89,7 @@ namespace Game.Player
                //攻撃
                Attack();
             }
-
-            //Debug.Log(HP);
+            
         }
         public void OxygenLimtesOver(float value)
         {
@@ -163,7 +166,6 @@ namespace Game.Player
             {
 
                 isAttack = true;
-                Debug.Log("攻撃");
                 
                 transform.RotateAround(target.transform.position, _axis, _status.attack  * Time.deltaTime * i * _directionAttack);
                 yield return null;
@@ -281,6 +283,7 @@ namespace Game.Player
         public void DamageOxygen(float oxygen)
         {
             _status.oxygen -= oxygen;
+            
             _hpc.Damage((uint)oxygen);
         }
         
@@ -290,6 +293,10 @@ namespace Game.Player
             return _jetCount;
         }
 
-        
+        //
+        //public void EcoOxygen(float eco)
+        //{
+        //    _jet = eco;
+        //}
     }
 }
