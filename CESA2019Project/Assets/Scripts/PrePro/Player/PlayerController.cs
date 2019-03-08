@@ -210,7 +210,7 @@ namespace Game.Player
         //酸素回復アイテムの参照
         public void AddOxygen(float _oxygen)
         {
-            _status.oxygen += _oxygen;
+            _status.oxygen = 100 < (_oxygen + _status.oxygen) ? 100 : _oxygen + _status.oxygen;
             _hpc.Heal((uint)_oxygen);
         }
 

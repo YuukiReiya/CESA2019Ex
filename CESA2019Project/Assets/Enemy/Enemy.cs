@@ -90,9 +90,6 @@ namespace Game.Enemy
         void Update()
         {
 
-            //	Sampleを中心に自分を現在の上方向に、毎秒angle分だけ回転する。
-            Vector3 axis = transform.TransformDirection(new Vector3(0, 0, 1));
-            transform.RotateAround(target.transform.position, axis, _angle * x * Time.deltaTime);
 
             //--------------------------------------------
             //  番場 編集
@@ -102,6 +99,9 @@ namespace Game.Enemy
                 return;
             }
             //--------------------------------------------
+            //	Sampleを中心に自分を現在の上方向に、毎秒angle分だけ回転する。
+            Vector3 axis = transform.TransformDirection(new Vector3(0, 0, 1));
+            transform.RotateAround(target.transform.position, axis, _angle * x * Time.deltaTime);
             if (Input.GetKey(KeyCode.Space))
             {
                 //Space押したら敵が消える
