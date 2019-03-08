@@ -19,7 +19,7 @@ public class EcoItem : Game.Item.IItem
         _time += Time.deltaTime;
 
 
-        if (player._jet==_ecoOxygen)
+        if (player._jet == _ecoOxygen)
         {
             //5秒後に値を戻す
             if (_time >= 5.0f)

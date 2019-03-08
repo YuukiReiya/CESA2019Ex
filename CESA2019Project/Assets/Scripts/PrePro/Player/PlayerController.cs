@@ -293,6 +293,10 @@ namespace Game.Player
             return _jetCount;
         }
 
+        public void SlowSpeed(float slow)
+        {
+            _status.speed = slow;
+        }
         //
         //public void EcoOxygen(float eco)
         //{
