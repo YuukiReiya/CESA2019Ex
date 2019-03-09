@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using MethodExpansion;
 using UnityEngine.SceneManagement;
 using Framework.Fade;
+using Framework.Sound;
 
 namespace Title.Scene
 {
@@ -110,6 +111,9 @@ namespace Title.Scene
                     },
                     _waitFrame
                     );
+
+                //  効果音
+                SoundManager.Instance.PlayOnSE("Menu");
             }
 
             //  下
@@ -128,6 +132,9 @@ namespace Title.Scene
                     },
                     _waitFrame
                     );
+
+                //  効果音
+                SoundManager.Instance.PlayOnSE("Menu");
             }
 
             //  設定メニューの変更
@@ -156,6 +163,7 @@ namespace Title.Scene
                     }
                 case Menu.GAME_END:
                     {
+                        SoundManager.Instance.PlayOnSE("Decision");
                         Application.Quit();
                         break;
                     }
@@ -167,6 +175,7 @@ namespace Title.Scene
         /// </summary>
         void GamePlay()
         {
+            SoundManager.Instance.PlayOnSE("Decision");
             var routine = FadeManager.Instance.FadeInCoroutine(
                  _fadeFrame,
                  () =>

@@ -51,21 +51,50 @@ namespace Game.Scene
         // Update is called once per frame
         void Update()
         {
-            //  クリア処理
+
+            //  1フレーム前のステート
+            var prevState = _state;
+
+            //-------------------------------------
+            //デバッグ
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                treasureCount = clearNum;
+            }
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                _player.DamageOxygen(999);
+            }
+            //-------------------------------------
+
+            //  クリア条件の監視
             if (treasureCount == clearNum)
             {
                 _state = State.CLEAR;
-                _clearImage.SetActive(true);
-                this.DelayMethod(() => { _isInput = true; }, 10);
+                //_clearImage.SetActive(true);
+                //this.DelayMethod(() => { _isInput = true; }, 10);
             }
-
-            //  ゲームオーバー処理
+            //  ゲームオーバー条件の監視
             else if (_player.HP <= 0)
             {
                 _state = State.GAME_OVER;
-                _gameoverImage.SetActive(true);
-                this.DelayMethod(() => { _isInput = true; }, 10);
+                //_gameoverImage.SetActive(true);
+                //this.DelayMethod(() => { _isInput = true; }, 10);
             }
+
+            //  一度だけ行われるクリア/ゲームオーバー処理
+            if (prevState == State.PLAY)
+            {
+                if (_state == State.CLEAR)
+                {
+                    SceneManager.LoadScene("GameClear", LoadSceneMode.Additive);
+                }
+                else if (_state == State.GAME_OVER)
+                {
+                    SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
+                }
+            }
+
             text.text = "☆  " + treasureCount + " / " + clearNum;
 
             //  ゲームオーバー & ゲームクリア処理

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using MyInput;
-
+using Framework.Sound;
 
 namespace Game.Player
 {
@@ -114,11 +114,17 @@ namespace Game.Player
             {
                 _directionButton = _directionRight;
                 _directionAttack = _directionRight;
+
+                //  効果音
+                SoundManager.Instance.PlayOnSE("Run");
             }
             else if (_inputLB)
             {
                 _directionButton = _directionLeft;
                 _directionAttack = _directionLeft;
+
+                //  効果音
+                SoundManager.Instance.PlayOnSE("Run");
             }
             else
             {

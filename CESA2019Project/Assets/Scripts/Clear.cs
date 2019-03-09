@@ -11,6 +11,7 @@ public class Clear : MonoBehaviour
     {
         cleard.SetActive(false);
         cleards.SetActive(false);
+        clear();
     }
 
     public void clear()
