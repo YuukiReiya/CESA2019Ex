@@ -15,11 +15,7 @@ namespace Game.Scene
         int treasureCount = 0;
         [SerializeField] Text text;
         [SerializeField] Player.PlayerController _player;
-        [SerializeField] GameObject _canvas;
-        [SerializeField] GameObject _clearImage;
-        [SerializeField] GameObject _gameoverImage;
         [SerializeField] float _fadeFrame = 45;
-        bool _isInput = false;
 
         public enum State
         {
@@ -37,10 +33,7 @@ namespace Game.Scene
         // Start is called before the first frame update
         void Start()
         {
-            _clearImage.SetActive(false);
-            _gameoverImage.SetActive(false);
             _state = State.PLAY;
-            _isInput = false;
             if (FadeManager.Instance)
             {
                 var routine = FadeManager.Instance.FadeOutCoroutine(_fadeFrame);
@@ -98,21 +91,30 @@ namespace Game.Scene
             text.text = "☆  " + treasureCount + " / " + clearNum;
 
             //  ゲームオーバー & ゲームクリア処理
-            if (_isInput)
+            if (_state != State.PLAY)
             {
-                //  アクティブ切替
-                _canvas.gameObject.SetActive(true);
-
                 //  A:リトライ
-                if(MyInput.MyInputManager.AllController.A)
+                if (MyInput.MyInputManager.AllController.A)
                 {
-                    //  シーンの再読み込み
-                    SceneManager.LoadScene(0);
+                    var routine = FadeManager.Instance.FadeInCoroutine(_fadeFrame, () =>
+                      {
+                      //  シーンの再読み込み
+                      SceneManager.LoadScene(1);
+                      });
+                    StartCoroutine(routine);
                 }
 
                 //  B:タイトル遷移
+                if (MyInput.MyInputManager.AllController.B)
+                {
+                    var routine = FadeManager.Instance.FadeInCoroutine(_fadeFrame, () =>
+                    {
+                    //  シーンの再読み込み
+                    SceneManager.LoadScene(0);
+                    });
+                    StartCoroutine(routine);
+                }
             }
-
         }
 
 
@@ -121,6 +123,22 @@ namespace Game.Scene
             treasureCount++;
         }
 
-        
+        /// <summary>
+        /// ゲームクリア時の更新処理
+        /// </summary>
+        void ClearUpdate()
+        {
+            //  Aでもう一度
+
+            //  Bでタイトル
+        }
+
+        /// <summary>
+        /// ゲームオーバー時の更新処理
+        /// </summary>
+        void OverUpdate()
+        {
+
+        }
     }
 }

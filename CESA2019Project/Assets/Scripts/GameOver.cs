@@ -11,6 +11,7 @@ public class GameOver : MonoBehaviour
     {
         Gameover.SetActive(false);
         Gameovers.SetActive(false);
+        over();
     }
    
     

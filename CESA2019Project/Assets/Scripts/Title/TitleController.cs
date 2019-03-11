@@ -12,14 +12,18 @@ namespace Title.Scene
 {
     public class TitleController : MonoBehaviour
     {
-
-        const float GAME_START = 0;
-        const float TUTORIAL = -60;
-        const float GAME_END = -125;
+        [System.Serializable]
+        struct Menucursor
+        {
+            public Image gameStart;
+            public Image tutorial;
+            public Image gameEnd;
+        }
         
-        [SerializeField] Image _cursor;
         [SerializeField] float _waitFrame = 120;
         [SerializeField] float _fadeFrame = 45;
+        [SerializeField] Menucursor _cursor;
+
         enum Menu
         {
             GANE_START,
@@ -39,10 +43,11 @@ namespace Title.Scene
         {
             _menu = Menu.GANE_START;
             _isInput = false;
-
+            ChangeCursor(_menu);
             if (FadeManager.Instance)
             {
                 var routine = FadeManager.Instance.FadeOutCoroutine(_fadeFrame);
+                StartCoroutine(routine);
             }
         }
 
@@ -57,29 +62,6 @@ namespace Title.Scene
             {
                 Transition();
             }
-        }
-
-        /// <summary>
-        /// メニューに合わせてカーソルの表示
-        /// </summary>
-        /// <param name="menu"></param>
-        /// <returns></returns>
-        Vector3 MenuPosition(Menu menu)
-        {
-            Vector3 pos = _cursor.rectTransform.localPosition;
-            switch(_menu)
-            {
-                case Menu.GANE_START:
-                    pos.y = GAME_START;
-                    break;
-                case Menu.TUTORIAL:
-                    pos.y = TUTORIAL;
-                    break;
-                case Menu.GAME_END:
-                    pos.y = GAME_END;
-                    break;
-            }
-            return pos;
         }
 
         /// <summary>
@@ -141,7 +123,7 @@ namespace Title.Scene
             _menu = (Menu)iMenu;
 
             //  カーソル位置更新
-            _cursor.rectTransform.localPosition = MenuPosition(_menu);
+            ChangeCursor(_menu);
 
         }
 
@@ -186,5 +168,29 @@ namespace Title.Scene
             StartCoroutine(routine);
         }
 
+        /// <summary>
+        /// カーソル変更
+        /// </summary>
+        void ChangeCursor(Menu menu)
+        {
+            switch(menu)
+            {
+                case Menu.GANE_START:
+                    _cursor.gameStart.gameObject.SetActive(true);
+                    _cursor.tutorial.gameObject.SetActive(false);
+                    _cursor.gameEnd.gameObject.SetActive(false);
+                    break;
+                case Menu.TUTORIAL:
+                    _cursor.gameStart.gameObject.SetActive(false);
+                    _cursor.tutorial.gameObject.SetActive(true);
+                    _cursor.gameEnd.gameObject.SetActive(false);
+                    break;
+                case Menu.GAME_END:
+                    _cursor.gameStart.gameObject.SetActive(false);
+                    _cursor.tutorial.gameObject.SetActive(false);
+                    _cursor.gameEnd.gameObject.SetActive(true);
+                    break;
+            }
+        }
     }
 }

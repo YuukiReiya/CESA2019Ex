@@ -506,5 +506,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ed5c1888b0c534c89a1080ea6c4ef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gameover: {fileID: 0}
-  Gameovers: {fileID: 0}
+  Gameover: {fileID: 650143006}
+  Gameovers: {fileID: 845791350}
